@@ -11,6 +11,34 @@
   <meta property="og:title" content="Darwynn Fulfillment">
   <meta name="twitter:title" content="https://darwynnfulfillment.com">
   <link rel="shortcut icon" href="https://darwynnfulfillment.com/">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script type="text/javascript" src="m1x-bounds.json"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+        .leaflet-container {
+            height: 400px;
+            width: 600px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
   <!--https://ogp.me/ -->  
@@ -27,112 +55,227 @@
 <!-- basic favicon -->
 <!--link rel="shortcut icon" href="https://developer.mozilla.org/static/img/favicon32.png"!-->
   <!-- https://developer.mozilla.org/zh-CN/docs/learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML !-->
-  <table class="text-center" width="100%">
-      <thead>
-          <tr>
-              <td><img alt="Flag of Canada" src="imgs/flag-canada.png" width="36" height="18">
-              </td>
-              <th colspan="4" class="text-center h4"><a href="show/all.html" target="page">Darwynn Warehouses</a>
-              </th>
-              <td class="align-items-end"><img alt="Canadian postal district map" src="imgs/app-logo1.jpg"  height="20">
-              </td>
-          </tr>
-      </thead>
-      <tbody>
-          <tr><td style="border:1px solid #aaa;">Warehouse No.
-          </td>
-              <td style="border:1px solid #aaa;">Region
-              </td>
-              <td style="border:1px solid #aaa;"> Street
-              </td>
-              <td style="border:1px solid #aaa;"> City
-              </td>
-              <td style="border:1px solid #aaa;"> Province
-              </td>
-              <td style="border:1px solid #aaa;" colspan="1"> Postal Code
-              </td>
-          </tr>
-          <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">01
-          </td>
-              <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
-                  width="5%">GTA
-              </td>
-              <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
-                  width="5%">40 Pullman Court
-              </td>
-              <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
-                  width="5%">Markham
-              </td>
-              <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
-                  width="5%">ON
-              </td>
-              <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
-                  width="5%"><a href="show/GTA40PullmanCourt-Markham-ON-M1X1E4.html" title="show a map" target="page">M1X 1E4
-                  </a>
-              </td>
-          </tr>				
-          <tr><td width="2%">02 </td>
-              <td width="5%">GVA
-              </td>
-              <td width="8%">Unit 206-208 19265 Airport Way
-              </td>
-              <td width="5%">Pitt Meadows
-              </td>
-              <td width="5%">BC
-              </td>
-              <td width="5%"><a href="show/GVAUnit206-208-9265AirportWayPittMeadows-BC-V3Y0G9.html" title="show a map" target="page">V3Y  0G9
-                  </a>
-              </td>
-          </tr>
-          <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">03
-          </td>
-              <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
-                  width="5%">Montreal
-              </td>
-              <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
-                  width="5%">500 Condor Street
-              </td>
-              <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
-                  width="5%">St-Eustache
-              </td>
-              <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
-                  width="5%">QC
-              </td>
-              <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
-                  width="5%"><a href="show/Montreal.html" title="show a map" target="page">J7R 0M7
-                  </a>
-              </td>
-          </tr>				
-          <tr><td width="2%"> </td>
-              <td width="5%">Montreal
-              </td>
-              <td width="5%">2850 rue Botham
-              </td>
-              <td width="5%">Saint-Laurent
-              </td>
-              <td width="5%">QC
-              </td>
-              <td width="5%"><a href="show/Montreal.html" title="show a map" target="page">H4S 1J1</a>
-              </td>
-          </tr>
-          <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">04
-          </td>
-              <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
-                  width="5%">Calary
-              </td>
-              <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
-                  width="5%">5555 69th Avenue SE
-              </td>
-              <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
-                  width="5%">Calary
-              </td>
-              <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
-                  width="5%">AB
-              </td>
-              <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
-                  width="5%"><a href="show/Calary5555-69th-Avenue-SE-Calgary-AB-T2C4Y7.html" title="show a map" target="page">T2C 4Y7</a>
-              </td>
-          </tr>
-      </tbody>
-  </table>
-</body>
+<style>
+        .pt {
+            padding-top: 0px;
+            padding-bottom: 20px;
+        }
+
+        .container2 {
+            max-width: 1140px;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .mb-2, .my-2 {
+            margin-bottom: .5rem !important;
+        }
+
+        .col-lg-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .col-md-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .col,.col-1,.col-10,.col-11,.col-12,.col-2,
+        .col-3,.col-4,.col-5,.col-6,.col-7,.col-8,
+        .col-9,.col-auto,.col-lg,.col-lg-1,.col-lg-10,
+        .col-lg-11,
+        .col-lg-12,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-lg-auto,
+        .col-md,
+        .col-md-1,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-md-auto,
+        .col-sm,
+        .col-sm-1,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-sm-auto,
+        .col-xl,
+        .col-xl-1,
+        .col-xl-10,
+        .col-xl-11,
+        .col-xl-12,
+        .col-xl-2,
+        .col-xl-3,
+        .col-xl-4,
+        .col-xl-5,
+        .col-xl-6,
+        .col-xl-7,
+        .col-xl-8,
+        .col-xl-9,
+        .col-xl-auto {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    </style>
+    <div class="container2 pt">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 mb-2">
+                <div class="table-responsive">
+                    <table class="text-center" width="100%">
+                        <thead>
+                            <tr>
+                                <td><img alt="Flag of Canada" src="imgs/flag-canada.png" width="36" height="18">
+                                </td>
+                                <th colspan="4" class="text-center h4"><a href="show/all.html" target="page">Darwynn Warehouses</a>
+                                </th>
+                                <td class="align-items-end"><img alt="Canadian postal district map" src="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg"  height="20">
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="border:1px solid #aaa;">Warehouse No.
+                            </td>
+                                <td style="border:1px solid #aaa;">Region
+                                </td>
+                                <td style="border:1px solid #aaa;"> Street
+                                </td>
+                                <td style="border:1px solid #aaa;"> City
+                                </td>
+                                <td style="border:1px solid #aaa;"> Province
+                                </td>
+                                <td style="border:1px solid #aaa;" colspan="1"> Postal Code
+                                </td>
+                            </tr>
+                            <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">01
+                            </td>
+                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
+                                    width="5%">GTA
+                                </td>
+                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
+                                    width="5%">40 Pullman Court
+                                </td>
+                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
+                                    width="5%">Markham
+                                </td>
+                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
+                                    width="5%">ON
+                                </td>
+                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
+                                    width="5%"><a href="show/GTA40PullmanCourt-Markham-ON-M1X1E4.html" title="show a map" target="page">M1X 1E4
+                                    </a>
+                                </td>
+                            </tr>				
+                            <tr><td width="2%">02 </td>
+                                <td width="5%">GVA
+                                </td>
+                                <td width="8%">Unit 206-208 19265 Airport Way
+                                </td>
+                                <td width="5%">Pitt Meadows
+                                </td>
+                                <td width="5%">BC
+                                </td>
+                                <td width="5%"><a href="show/GVAUnit206-208-9265AirportWayPittMeadows-BC-V3Y0G9.html" title="show a map" target="page">V3Y  0G9
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">03
+                            </td>
+                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
+                                    width="5%">Montreal
+                                </td>
+                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
+                                    width="5%">500 Condor Street
+                                </td>
+                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
+                                    width="5%">St-Eustache
+                                </td>
+                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
+                                    width="5%">QC
+                                </td>
+                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
+                                    width="5%"><a href="show/Montreal.html" title="show a map" target="page">J7R 0M7
+                                    </a>
+                                </td>
+                            </tr>				
+                            <tr><td width="2%"> </td>
+                                <td width="5%">Montreal
+                                </td>
+                                <td width="5%">2850 rue Botham
+                                </td>
+                                <td width="5%">Saint-Laurent
+                                </td>
+                                <td width="5%">QC
+                                </td>
+                                <td width="5%"><a href="show/Montreal.html" title="show a map" target="page">H4S 1J1</a>
+                                </td>
+                            </tr>
+                            <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">04
+                            </td>
+                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
+                                    width="5%">Calary
+                                </td>
+                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
+                                    width="5%">5555 69th Avenue SE
+                                </td>
+                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
+                                    width="5%">Calary
+                                </td>
+                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
+                                    width="5%">AB
+                                </td>
+                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
+                                    width="5%"><a href="show/Calary5555-69th-Avenue-SE-Calgary-AB-T2C4Y7.html" title="show a map" target="page">T2C 4Y7</a>
+                                </td>
+                            </tr>			
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <iframe src="show/all.html" name="page"  width="1200" height="800"></iframe>
+        </div>
+    </div>
+  </body>
