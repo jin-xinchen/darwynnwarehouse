@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Darwynn Warehouse - Leaflet</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script type="text/javascript" src="m1x-bounds.json"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .leaflet-container {
+            height: 400px;
+            width: 600px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map" style="width: 1200px; height: 800px;"></div>
+    <script>
+        var warehouse_view = {
+            point: [43.821903, -79.239407],
+            zoom: 12
+        };
+
+        //var map = L.map('map').setView([51.505, -0.09], 13); //13城市视图 23街道视图；
+        var map = L.map('map').setView(warehouse_view.point, warehouse_view.zoom);
+        map.once("focus", function () {
+            map.scrollWheelZoom.enable()
+        });
+        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(map);
+        var marker = L.marker(warehouse_view.point).addTo(map)
+            .bindPopup('<br />No.01<br />GTA<br />40 Pullman Ct<br />Scarborough, ON M1X 1E4 ').openPopup();
+            // marker.bindTooltip("1	GTA	40 Pullman Court Markham ON	M1X 1E4.").openTooltip();
+        var circle = L.circle(warehouse_view.point, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.92,
+            radius: 5
+        }).addTo(map).bindPopup('40-41');
+
+        var popup = L.popup()
+            .setLatLng(warehouse_view.point)
+            .setContent('I am Darwynn.');
+            // .openOn(map);
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent('You clicked the map at ' + e.latlng.toString())
+                .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+        
+    var info = L.control();
+    info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info'); 
+        this.update();
+        return this._div;
+    };//mi<sup>2</sup>
+    info.update = function (props) {
+        this._div.innerHTML = (props ? '<b>' + props.legend + '</b><br />'
+            : 'Hover over a Forward Sortation Area');
+    };
+
+    info.addTo(map);
+
+    function getColor(d) {
+		return d > 5  ? '#e9f5e2' :
+			d == 5 ? '#ffeda0' :
+			d == 4  ? '#a1d9cf' :
+			d == 3   ? '#feb24c' :
+			d == 2   ? '#61a354' :
+			d == 1   ? '#f03b20' : '#61a354';
+	}	
+    function style(feature) {
+		return {
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			dashArray: '3',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.c)
+		};
+	}
+    function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+    var m1x_gj;
+    function resetHighlight(e) {
+		m1x_gj.resetStyle(e.target);
+		info.update();
+	}
+    function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+    function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+    m1x_gj = L.geoJson(sD, {style: style,onEachFeature: onEachFeature}).addTo(map);
+    map.attributionControl.addAttribution('By <a href="https://darwynnfulfillment.com/">Darwynn</a>');
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend'),
+            grades = [0, 1, 2, 3, 4,5],
+            labels = [];
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +='<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        }
+        return div;
+    };
+    // legend.addTo(map);
+    </script>
+    <style>
+        .legend {
+        line-height: 18px;
+        color: #555;
+    }
+    .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+    </style>
+    <style>
+        .pt {
+            padding-top: 0px;
+            padding-bottom: 20px;
+        }
+
+        .container2 {
+            max-width: 1140px;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .mb-2,
+        .my-2 {
+            margin-bottom: .5rem !important;
+        }
+
+        .col-lg-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .col-md-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .col,
+        .col-1,
+        .col-10,
+        .col-11,
+        .col-12,
+        .col-2,
+        .col-3,
+        .col-4,
+        .col-5,
+        .col-6,
+        .col-7,
+        .col-8,
+        .col-9,
+        .col-auto,
+        .col-lg,
+        .col-lg-1,
+        .col-lg-10,
+        .col-lg-11,
+        .col-lg-12,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-lg-auto,
+        .col-md,
+        .col-md-1,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-md-auto,
+        .col-sm,
+        .col-sm-1,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-sm-auto,
+        .col-xl,
+        .col-xl-1,
+        .col-xl-10,
+        .col-xl-11,
+        .col-xl-12,
+        .col-xl-2,
+        .col-xl-3,
+        .col-xl-4,
+        .col-xl-5,
+        .col-xl-6,
+        .col-xl-7,
+        .col-xl-8,
+        .col-xl-9,
+        .col-xl-auto {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    </style>
+    <div class="container2 pt">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 mb-2">
+                <div class="table-responsive">
+                    <table class="text-center" width="99%">
+                        <thead>
+                            <tr>
+                                <td><img alt="Flag of Canada" src="imgs/flag-canada.png" width="36" height="18">
+                                </td>
+                                <th colspan="16" class="text-center h4">Warehouse No.01
+
+                                </th>
+                                <td class="align-items-end"><img alt="Canadian postal district map"
+                                        src="imgs/district_map.png" width="21" height="18">
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #aaa;">Region
+                                </td>
+                                <td style="border:1px solid #aaa;"> Street
+                                </td>
+                                <td style="border:1px solid #aaa;"> City
+                                </td>
+                                <td style="border:1px solid #aaa;"> Province
+                                </td>
+                                <td style="border:1px solid #aaa;" colspan="2"> Postal Code
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
+                                    width="5%"><a href="/list-a" title="List of postal codes of Canada: A">GTA</a>
+                                </td>
+                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
+                                    width="5%"><a href="/list-b" title="List of postal codes of Canada: B">40 Pullman
+                                        Court
+                                    </a>
+                                </td>
+                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
+                                    width="5%"><a href="/list-c" title="List of postal codes of Canada: C">Markham
+                                    </a>
+                                </td>
+                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
+                                    width="5%"><a href="/list-e" title="List of postal codes of Canada: E">ON
+                                    </a>
+                                </td>
+                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
+                                    width="5%"><a href="/list-g" title="List of postal codes of Canada: G">M1X
+                                    </a>
+                                </td>
+                                <td style="border: 1px solid #C0FF00; background-color: #F8FFE0; font-size: 135%;"
+                                    width="5%"><a href="/list-h" title="List of postal codes of Canada: H">1E4</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="my-2">
+                    <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1066447241658620"
+                        data-ad-slot="2893352433" data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
