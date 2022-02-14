@@ -19,6 +19,8 @@
         crossorigin=""></script>
     <script type="text/javascript" src="m1x-bounds.json"></script>
     <script type="text/javascript" src="district.json"></script>
+    <!-- <script src="dist/leaflet.canvas-markers.js"></script> -->
+    <script src="dist/L.LabelTextCollision.js"></script>
     <style>
         html,
         body {
@@ -58,19 +60,48 @@
             zoom: 4
         };
 
+        var labelTextCollision = new L.LabelTextCollision({
+                collisionFlg : true
+            });
         //var map = L.map('map').setView([51.505, -0.09], 13); //13城市视图 23街道视图；
-        var map = L.map('map').setView(warehouse_view.point, warehouse_view.zoom);
+        // var map = L.map('map',{preferCanvas:true,renderer:labelTextCollision}).setView(warehouse_view.point, warehouse_view.zoom);
+        var map = L.map('map',{preferCanvas:true}).setView(warehouse_view.point, warehouse_view.zoom);
         map.once("focus", function () {
             map.scrollWheelZoom.enable()
         });
-        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-            maxZoom: 18,
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            id: 'mapbox/light-v9',
-            tileSize: 512,
-            zoomOffset: -1
-        }).addTo(map);
+        var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+        // var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        //     maxZoom: 18,
+        //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        //         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        //     id: 'mapbox/light-v9',
+        //     tileSize: 512,
+        //     zoomOffset: -1
+        // }).addTo(map);
+        
+        // var ciLayer = L.canvasIconLayer({}).addTo(map);
+        // for (var i = 0; i < 10; i++) {
+        // // for (var i = 0; i < 100000; i++) {  
+        //     var lat = warehouse_view.point[0] + (Math.random() - Math.random()) * 3;
+        //     var lng = warehouse_view.point[1] + (Math.random() - Math.random()) * 3;
+        //     //在这里设置图片和文字，调整位置，让文字显示在图片上
+        //     var icon = L.icon({
+        //         iconUrl: './imgs/bg.png',//./img/bg.png
+        //         iconSize: [84, 34],
+        //         iconAnchor: [40, 20],
+        //         //添加文字
+        //         text:i.toString(),
+        //         textAnchor: [5, 0],         
+        //         textFont:'14px bold',       //设置字体大小和样式
+        //         textFillStyle:'#FFFFFF'     //设置字体颜色
+        //     });
+        //     var marker = L.marker([lat, lng], {
+        //             icon: icon
+        //         })
+        //         .bindPopup("I Am " + i); //绑定气泡窗口
+        //     ciLayer.addLayer(marker);
+        // }
+
     // var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
 	// var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 	// var grayscale = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
@@ -95,7 +126,14 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
         });    
-        
+        // var data = [//https://codepen.io/liao/pen/rNVNoGN https://codepen.io/liao/pen/poJoqmz https://codepen.io/liao/pen/XWbWMdr
+        // {'name':'軟體園區',lat:22.604799,lng:120.2976256},
+        // {'name':'ikea',lat:22.6066728,lng:120.3015429}
+        // ]
+        // for(var i =0;data.length>i;i++){
+        // L.marker([data[i].lat,data[i].lng], {icon: greenIcon}).addTo(map)
+        //     .bindPopup('<h1>'+ data[i].name +'</h1>')
+        // }
         var marker = L.marker(warehouse_view.point, {icon: greenIcon}).addTo(map)
             .bindPopup('<br />No.01<br />GTA<br />40 Pullman Ct<br />Scarborough, ON M1X 1E4 ').openPopup();
             // marker.bindTooltip("1	GTA	40 Pullman Court Markham ON	M1X 1E4.").openTooltip();
@@ -189,23 +227,54 @@
 
 		info.update(layer.feature.properties);
 	}
-    var m1x_gj;
+    var m1x_gj;var m1x_gj00;
+    var fg00=L.featureGroup().setZIndex(-900000).bringToBack().addTo(map);
+    var fg01=L.featureGroup().bringToBack();
     function resetHighlight(e) {
 		m1x_gj.resetStyle(e.target);
 		info.update();
 	}
     function zoomToFeature(e) {
 		map.fitBounds(e.target.getBounds());
-	}
+	}    
     function onEachFeature(feature, layer) {
 		layer.on({
 			mouseover: highlightFeature,
 			mouseout: resetHighlight,
 			click: zoomToFeature
 		});
+        var latlng=layer.getBounds().getCenter();        
+        var myIcon = L.divIcon({html: feature.properties.name,className: 'my-div-icon'});//,iconSize:20
+        var txt01 =L.marker(latlng, { icon: myIcon }).setZIndexOffset(-999999);//.addTo(map);
+        fg01.addLayer(txt01);
 	}
-    m1x_gj = L.geoJson(sD, {style: style,onEachFeature: onEachFeature}).addTo(map);
-    var m1x_gj00 = L.geoJson(district,{style: style,onEachFeature: onEachFeature}).addTo(map);
+    function onEachFeature00(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+        var latlng=layer.getBounds().getCenter();        
+        // var myIcon = L.divIcon({html: feature.properties.name,className: 'my-div-icon'});//,iconSize:20
+        // var txt01 =L.marker(latlng, { icon: myIcon }).setZIndexOffset(-999999);//.addTo(map);// Index not work
+        // fg00.addLayer(txt01);
+
+        // var c = L.circleMarker(latlng, {radius : 0,text : feature.properties.name,renderer:labelTextCollision,
+        //         textStyle: {stroke: true,color: 'red',font: "25px 'Microsoft Yahei'",offsetX: -7,offsetY: -1}
+        //     });
+        // fg00.addLayer(c);
+        var p = L.polyline(
+                [ [latlng.lat,latlng.lng],[latlng.lat,latlng.lng] ], {
+                    weight : 0, color : '#fe57a1',
+                    text : feature.properties.name,
+                    textStyle: {stroke: true,color: '#ff0000',font: "20px 'Microsoft Yahei'",
+                    },renderer:labelTextCollision
+                });
+                fg00.addLayer(p);
+
+	}
+    m1x_gj = L.geoJson(sD, {style: style,onEachFeature: onEachFeature}).addTo(map);//.bringToFront().setZIndex(99999999);
+    m1x_gj00 = L.geoJson(district,{style: style,onEachFeature: onEachFeature00}).addTo(map);//.bringToFront().setZIndex(99999999);;
     // m1x_gj.addData(district);
     
     map.attributionControl.addAttribution('By <a href="https://darwynnfulfillment.com/">Darwynn</a>');
@@ -237,7 +306,8 @@
     var imageUrl = 'imgs/app-logo1.jpg';
     var imageBounds = [warehouse_view.point,[43.821558, -79.238586]];
     var overlay = L.imageOverlay(imageUrl, imageBounds);
-    overlay.addTo(map);
+    overlay.addTo(map);//.bringToFront().setZIndex(999999)
+    
 
     var scale = L.control.scale(); // Creating scale control
     scale.addTo(map); // Adding scale control to the map
@@ -245,10 +315,11 @@
     var myIcon = L.divIcon({html: "02",className: 'my-div-icon',iconSize:30});
     var txt01 =L.marker(V3Y, { icon: myIcon }).addTo(map);
     function onMapzoom(e){
-           if(map.getZoom()>5){m1x_gj00.removeFrom(map);}else{m1x_gj00.addTo(map);}
+           if(map.getZoom()>8){m1x_gj00.removeFrom(map);fg00.removeFrom(map);}else{m1x_gj00.addTo(map);fg00.addTo(map);}
+           if(map.getZoom()>8){fg01.addTo(map);}else{fg01.removeFrom(map);}           
            txt01.removeFrom(map);
         }
-        map.on('zoom',onMapzoom);
+    map.on('zoom',onMapzoom);
     // var bounds = m1x_gj.getBounds();
     // var lonlat = bounds.getCenter();
     // var sheng=L.featureGroup();
@@ -258,15 +329,23 @@
     // sheng.addTo(map)
 
     // new L.Marker([lonlat.lat,lonlat.lng]).addTo(map); 
-
+    // var xhr=new XMLHttpRequest();
+    // xhr.open("get","https://");
+    // xhr.send();
+    // xhr.onload=function(){
+    //     var data=JSON.parse(xhr.responseText).features;
+    //     for(var i=0;data.length>i;i++){
+            
+    //     }
+    // }
     </script>
     <style>
         .my-div-icon{
             font-size:15px;
-            background:rgb(231, 201, 201);
+            /*background:rgb(231, 201, 201);*/
             /*width:5px;*/
             color:red;
-            opacity: 0.5;
+            opacity: 0.9;
         }
     </style>
     <style>
