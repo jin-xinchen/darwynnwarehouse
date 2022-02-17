@@ -10,13 +10,9 @@
 
     <!--link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /-->
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script type="text/javascript" src="m1x-bounds.json"></script>
     <script type="text/javascript" src="district.json"></script>
     <!-- <script src="dist/leaflet.canvas-markers.js"></script> -->
@@ -27,28 +23,43 @@
             height: 100%;
             margin: 0;
         }
-
+        
         .leaflet-container {
             height: 400px;
             width: 600px;
             max-width: 100%;
             max-height: 100%;
         }
+        
         .info {
             padding: 6px 8px;
             font: 14px/16px Arial, Helvetica, sans-serif;
             background: white;
-            background: rgba(255,255,255,0.8);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
         }
+        
         .info h4 {
             margin: 0 0 5px;
             color: #777;
         }
     </style>
     <script>
-        var postalDistrict = {"NL":["A"],"NS":["B"],"PE":["C"],"NB":["E"],"QC":["G","H","J"],"ON":["K","L","M","N","P"],"MB":["R"],"SK":["S"],"AB":["T"],"BC":["V"],"NU/NT":["X"],"YT":["Y"]};
+        var postalDistrict = {
+            "NL": ["A"],
+            "NS": ["B"],
+            "PE": ["C"],
+            "NB": ["E"],
+            "QC": ["G", "H", "J"],
+            "ON": ["K", "L", "M", "N", "P"],
+            "MB": ["R"],
+            "SK": ["S"],
+            "AB": ["T"],
+            "BC": ["V"],
+            "NU/NT": ["X"],
+            "YT": ["Y"]
+        };
     </script>
 </head>
 
@@ -61,12 +72,14 @@
         };
 
         var labelTextCollision = new L.LabelTextCollision({
-                collisionFlg : true
-            });
+            collisionFlg: true
+        });
         //var map = L.map('map').setView([51.505, -0.09], 13); //13城市视图 23街道视图；
         // var map = L.map('map',{preferCanvas:true,renderer:labelTextCollision}).setView(warehouse_view.point, warehouse_view.zoom);
-        var map = L.map('map',{preferCanvas:true}).setView(warehouse_view.point, warehouse_view.zoom);
-        map.once("focus", function () {
+        var map = L.map('map', {
+            preferCanvas: true
+        }).setView(warehouse_view.point, warehouse_view.zoom);
+        map.once("focus", function() {
             map.scrollWheelZoom.enable()
         });
         var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
@@ -78,7 +91,7 @@
         //     tileSize: 512,
         //     zoomOffset: -1
         // }).addTo(map);
-        
+
         // var ciLayer = L.canvasIconLayer({}).addTo(map);
         // for (var i = 0; i < 10; i++) {
         // // for (var i = 0; i < 100000; i++) {  
@@ -102,30 +115,30 @@
         //     ciLayer.addLayer(marker);
         // }
 
-    // var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
-	// var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-	// var grayscale = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
-	// var streets = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
-    // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=zh-tw#add_key
-    // https://github.com/pointhi/leaflet-color-markers
-    var greenIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
+        // var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+        // var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        // var grayscale = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+        // var streets = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+        // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=zh-tw#add_key
+        // https://github.com/pointhi/leaflet-color-markers
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
         });
-        var iconUrlyellow='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png';
-        var iconUrlgrey='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png';
+        var iconUrlyellow = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png';
+        var iconUrlgrey = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png';
         var greyIcon = new L.Icon({
-        iconUrl: iconUrlyellow,
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-        });    
+            iconUrl: iconUrlyellow,
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
         // var data = [//https://codepen.io/liao/pen/rNVNoGN https://codepen.io/liao/pen/poJoqmz https://codepen.io/liao/pen/XWbWMdr
         // {'name':'軟體園區',lat:22.604799,lng:120.2976256},
         // {'name':'ikea',lat:22.6066728,lng:120.3015429}
@@ -134,232 +147,314 @@
         // L.marker([data[i].lat,data[i].lng], {icon: greenIcon}).addTo(map)
         //     .bindPopup('<h1>'+ data[i].name +'</h1>')
         // }
-        var marker = L.marker(warehouse_view.point, {icon: greenIcon}).addTo(map)
+        var marker = L.marker(warehouse_view.point, {
+                icon: greenIcon
+            }).addTo(map)
             .bindPopup('<br />No.01<br />GTA<br />40 Pullman Ct<br />Scarborough, ON M1X 1E4 ').openPopup();
-            // marker.bindTooltip("1	GTA	40 Pullman Court Markham ON	M1X 1E4.").openTooltip();
+        // marker.bindTooltip("1	GTA	40 Pullman Court Markham ON	M1X 1E4.").openTooltip();
         var circle = L.circle(warehouse_view.point, {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.2,
             radius: 50
-        }).addTo(map);//.bindPopup('40-41');
+        }).addTo(map); //.bindPopup('40-41');
 
-        var V3Y=[49.21078726150164, -122.68915247290388];
+        var V3Y = [49.21078726150164, -122.68915247290388];
         var marker_V3Y = L.marker(V3Y).addTo(map)
-                    .bindPopup('<br />No.02<br />GTA<br />19265 Airport Way 206 208<br />Pitt Meadows, BC V3Y 2M5 ');
-        var circle_V3Y = L.circle(V3Y, {color: 'red',fillColor: '#f03',fillOpacity: 0.5, radius: 500
-                }).addTo(map);
+            .bindPopup('<br />No.02<br />GTA<br />19265 Airport Way 206 208<br />Pitt Meadows, BC V3Y 2M5 ');
+        var circle_V3Y = L.circle(V3Y, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
 
-        var j7r=[45.55219792178999, -73.92935347910611];
-        var marker_j7r = L.marker(j7r,{icon:greyIcon}).addTo(map)
+        var j7r = [45.55219792178999, -73.92935347910611];
+        var marker_j7r = L.marker(j7r, {
+                icon: greyIcon
+            }).addTo(map)
             .bindPopup('<br />No.03<br />Montreal<br />500 R. du Condor<br />Saint-Eustache, QC J7R 0M7  ');
-        var circle_j7r = L.circle(j7r, {color: 'red',fillColor: '#f03',fillOpacity: 0.5, radius: 500
-            }).addTo(map);
+        var circle_j7r = L.circle(j7r, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
 
-        var h4s=[45.49806340461993, -73.7439308293936];
-        var marker_h4s = L.marker(h4s,{icon:greyIcon}).addTo(map)
+        var h4s = [45.49806340461993, -73.7439308293936];
+        var marker_h4s = L.marker(h4s, {
+                icon: greyIcon
+            }).addTo(map)
             .bindPopup('<br />No.03<br />Montreal<br />2850 Rue Botham<br />Saint-Laurent, QC H4S 1J1 ');
-        var circle_h4s = L.circle(h4s, {color: 'red',fillColor: '#f03',fillOpacity: 0.5,radius: 500}).addTo(map);
-            
-        var T2C=[50.992663, -113.951633];
-        var T2C_t='<br />No.04<br />5555 69 Ave SE<br />Calgary, AB T2C 4Y7';
+        var circle_h4s = L.circle(h4s, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
+
+        var T2C = [50.992663, -113.951633];
+        var T2C_t = '<br />No.04<br />5555 69 Ave SE<br />Calgary, AB T2C 4Y7';
         var marker_T2C = L.marker(T2C).addTo(map)
-            .bindPopup(T2C_t);//{title: "MyLocation",clickable: true,draggable: true}
-        var circle_T2C = L.circle(T2C, {color: 'red',fillColor: '#f03',fillOpacity: 0.92,radius: 50
+            .bindPopup(T2C_t); //{title: "MyLocation",clickable: true,draggable: true}
+        var circle_T2C = L.circle(T2C, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.92,
+            radius: 50
         }).addTo(map);
 
         var popup = L.popup()
             .setLatLng(warehouse_view.point)
-            .setContent('<br />No.02<br />GTA<br />40 Pullman Ct<br />Scarborough, ON M1X 1E4 ');//.openOn(map);    
+            .setContent('<br />No.02<br />GTA<br />40 Pullman Ct<br />Scarborough, ON M1X 1E4 '); //.openOn(map);    
         function onMapClick(e) {
             popup
                 .setLatLng(e.latlng)
                 .setContent('You clicked the map at ' + e.latlng.toString())
                 .openOn(map);
-                // new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);  //click new Marker
+            // new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);  //click new Marker
         }
         // map.on('click', onMapClick);
-        
-    var info = L.control();
-    info.onAdd = function (map) {
-        this._div = L.DomUtil.create('div', 'info'); 
-        this.update();
-        return this._div;
-    };//mi<sup>2</sup>
-    info.update = function (props) {
-        this._div.innerHTML = (props ? '<b>' + props.legend + '</b><br />'
-            : 'Hover over a Forward Sortation Area');
-    };
 
-    info.addTo(map);
+        var info = L.control();
+        info.onAdd = function(map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        }; //mi<sup>2</sup>
+        info.update = function(props) {
+            this._div.innerHTML = (props ? '<b>' + props.legend + '</b><br />' :
+                'Hover over a Forward Sortation Area');
+        };
 
-    function getColor(d) {
-		return d > 50  ? '#e9f5e2' :
-			d == 50 ? '#ffeda0' :
-			d == 40  ? '#a1d9cf' :
-			d == 30   ? '#feb24c' :
-			d == 20   ? '#61a354' :
-			d == 10   ? '#f03b20' : '#61a354';
-	}	
-    function style(feature) {
-		return {
-			weight: 2,
-			opacity: 1,
-			color: 'white',
-			dashArray: '3',
-			fillOpacity: 0.7,
-			fillColor: getColor(feature.properties.c)
-		};
-	}
-    function highlightFeature(e) {
-		var layer = e.target;
+        info.addTo(map);
 
-		layer.setStyle({
-			weight: 5,
-			color: '#666',
-			dashArray: '',
-			fillOpacity: 0.7
-		});
+        function getColor(d) {
+            return d > 50 ? '#e9f5e2' :
+                d == 50 ? '#ffeda0' :
+                d == 40 ? '#a1d9cf' :
+                d == 30 ? '#feb24c' :
+                d == 20 ? '#61a354' :
+                d == 10 ? '#f03b20' : '#61a354';
+        }
 
-		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-			layer.bringToFront();
-		}
+        function style(feature) {
+            return {
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.7,
+                fillColor: getColor(feature.properties.c)
+            };
+        }
 
-		info.update(layer.feature.properties);
-	}
-    var m1x_gj;var m1x_gj00;
-    var fg00=L.featureGroup().setZIndex(-900000).bringToBack().addTo(map);
-    var fg01=L.featureGroup().bringToBack();
-    function resetHighlight(e) {
-		m1x_gj.resetStyle(e.target);
-		info.update();
-	}
-    function zoomToFeature(e) {
-		map.fitBounds(e.target.getBounds());
-	}    
-    function onEachFeature(feature, layer) {
-		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight,
-			click: zoomToFeature
-		});
-        var latlng=layer.getBounds().getCenter();        
-        var myIcon = L.divIcon({html: feature.properties.name,className: 'my-div-icon'});//,iconSize:20
-        var txt01 =L.marker(latlng, { icon: myIcon }).setZIndexOffset(-999999);//.addTo(map);
-        fg01.addLayer(txt01);
-	}
-    function onEachFeature00(feature, layer) {
-		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight,
-			click: zoomToFeature
-		});
-        var latlng=layer.getBounds().getCenter();        
-        // var myIcon = L.divIcon({html: feature.properties.name,className: 'my-div-icon'});//,iconSize:20
-        // var txt01 =L.marker(latlng, { icon: myIcon }).setZIndexOffset(-999999);//.addTo(map);// Index not work
-        // fg00.addLayer(txt01);
+        function highlightFeature(e) {
+            var layer = e.target;
 
-        // var c = L.circleMarker(latlng, {radius : 0,text : feature.properties.name,renderer:labelTextCollision,
-        //         textStyle: {stroke: true,color: 'red',font: "25px 'Microsoft Yahei'",offsetX: -7,offsetY: -1}
-        //     });
-        // fg00.addLayer(c);
-        var p = L.polyline(
-                [ [latlng.lat,latlng.lng],[latlng.lat,latlng.lng] ], {
-                    weight : 0, color : '#fe57a1',
-                    text : feature.properties.name,
-                    textStyle: {stroke: true,color: '#ff0000',font: "20px 'Microsoft Yahei'",
-                    },renderer:labelTextCollision
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+
+            info.update(layer.feature.properties);
+        }
+        var m1x_gj;
+        var m1x_gj00;
+        var fg00 = L.featureGroup().setZIndex(-900000).bringToBack().addTo(map);
+        var fg01 = L.featureGroup().bringToBack();
+
+        function resetHighlight(e) {
+            m1x_gj.resetStyle(e.target);
+            info.update();
+        }
+
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
+            var latlng = layer.getBounds().getCenter();
+            var myIcon = L.divIcon({
+                html: feature.properties.name,
+                className: 'my-div-icon'
+            }); //,iconSize:20
+            var txt01 = L.marker(latlng, {
+                icon: myIcon
+            }).setZIndexOffset(-999999); //.addTo(map);
+            fg01.addLayer(txt01);
+        }
+
+        function onEachFeature00(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
+            var latlng = layer.getBounds().getCenter();
+            // var myIcon = L.divIcon({html: feature.properties.name,className: 'my-div-icon'});//,iconSize:20
+            // var txt01 =L.marker(latlng, { icon: myIcon }).setZIndexOffset(-999999);//.addTo(map);// Index not work
+            // fg00.addLayer(txt01);
+
+            // var c = L.circleMarker(latlng, {radius : 0,text : feature.properties.name,renderer:labelTextCollision,
+            //         textStyle: {stroke: true,color: 'red',font: "25px 'Microsoft Yahei'",offsetX: -7,offsetY: -1}
+            //     });
+            // fg00.addLayer(c);
+            var p = L.polyline(
+                [
+                    [latlng.lat, latlng.lng],
+                    [latlng.lat, latlng.lng]
+                ], {
+                    weight: 0,
+                    color: '#fe57a1',
+                    text: feature.properties.name,
+                    textStyle: {
+                        stroke: true,
+                        color: '#ff0000',
+                        font: "20px 'Microsoft Yahei'",
+                    },
+                    renderer: labelTextCollision
                 });
-                fg00.addLayer(p);
+            fg00.addLayer(p);
+            // var po =L.point(-6, 0);
+            // var p=L.polyline([[latlng.lat,latlng.lng],[latlng.lat,latlng.lng]]).bindTooltip(feature.properties.name,{permanent:true,opacity:0.5,offset:po,className:'my-div-icon'}).openTooltip();
+            // fg00.addLayer(p);
 
-	}
-    m1x_gj = L.geoJson(sD, {style: style,onEachFeature: onEachFeature}).addTo(map);//.bringToFront().setZIndex(99999999);
-    m1x_gj00 = L.geoJson(district,{style: style,onEachFeature: onEachFeature00}).addTo(map);//.bringToFront().setZIndex(99999999);;
-    // m1x_gj.addData(district);
-    
-    map.attributionControl.addAttribution('By <a href="https://darwynnfulfillment.com/">Darwynn</a>');
-    var legend = L.control({position: 'bottomright'});
-
-    legend.onAdd = function (map) {
-        var div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 1, 2, 3, 4,5],
-            labels = [];
-
-        // loop through our density intervals and generate a label with a colored square for each interval
-        for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +='<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-                grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
-        return div;
-    };
-    // legend.addTo(map);
+        m1x_gj = L.geoJson(sD, {
+            style: style,
+            onEachFeature: onEachFeature
+        }).addTo(map); //.bringToFront().setZIndex(99999999);
+        m1x_gj00 = L.geoJson(district, {
+            style: style,
+            onEachFeature: onEachFeature00
+        }).addTo(map); //.bringToFront().setZIndex(99999999);;
+        // m1x_gj.addData(district);
 
-    var polyline1 = L.polyline([warehouse_view.point,   V3Y], {color: 'red'});
-    polyline1.addTo(map);
-    var polyline2 = L.polyline([warehouse_view.point, j7r], {color: 'red'});
-    polyline2.addTo(map);
-    var polyline3 = L.polyline([warehouse_view.point, h4s], {color: 'red'});
-    polyline3.addTo(map);
-    var polyline4 = L.polyline([warehouse_view.point, T2C   ], {color: 'red'});
-    polyline4.addTo(map);
+        map.attributionControl.addAttribution('By <a href="https://darwynnfulfillment.com/">Darwynn</a>');
+        var legend = L.control({
+            position: 'bottomright'
+        });
 
-    var imageUrl = 'imgs/app-logo1.jpg';
-    var imageBounds = [warehouse_view.point,[43.821558, -79.238586]];
-    var overlay = L.imageOverlay(imageUrl, imageBounds);
-    overlay.addTo(map);//.bringToFront().setZIndex(999999)
-    
+        legend.onAdd = function(map) {
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = [0, 1, 2, 3, 4, 5],
+                labels = [];
 
-    var scale = L.control.scale(); // Creating scale control
-    scale.addTo(map); // Adding scale control to the map
+            // loop through our density intervals and generate a label with a colored square for each interval
+            for (var i = 0; i < grades.length; i++) {
+                div.innerHTML += '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            }
+            return div;
+        };
+        // legend.addTo(map);
 
-    var myIcon = L.divIcon({html: "02",className: 'my-div-icon',iconSize:30});
-    var txt01 =L.marker(V3Y, { icon: myIcon }).addTo(map);
-    function onMapzoom(e){
-           if(map.getZoom()>8){m1x_gj00.removeFrom(map);fg00.removeFrom(map);}else{m1x_gj00.addTo(map);fg00.addTo(map);}
-           if(map.getZoom()>8){fg01.addTo(map);}else{fg01.removeFrom(map);}           
-           txt01.removeFrom(map);
+        var polyline1 = L.polyline([warehouse_view.point, V3Y], {
+            color: 'red'
+        }).addTo(map);
+        // polyline1.bindTooltip("my tooltip text", {
+        //     permanent: true
+        // }).openTooltip().addTo(map);
+        var polyline2 = L.polyline([warehouse_view.point, j7r], {
+            color: 'red'
+        });
+        polyline2.addTo(map);
+        var polyline3 = L.polyline([warehouse_view.point, h4s], {
+            color: 'red'
+        });
+        polyline3.addTo(map);
+        var polyline4 = L.polyline([warehouse_view.point, T2C], {
+            color: 'red'
+        });
+        polyline4.addTo(map);
+
+        var imageUrl = 'imgs/app-logo1.jpg';
+        var imageBounds = [warehouse_view.point, [43.821558, -79.238586]];
+        var overlay = L.imageOverlay(imageUrl, imageBounds);
+        overlay.addTo(map); //.bringToFront().setZIndex(999999)
+
+
+        var scale = L.control.scale(); // Creating scale control
+        scale.addTo(map); // Adding scale control to the map
+
+        var myIcon = L.divIcon({
+            html: "02",
+            className: 'my-div-icon',
+            iconSize: 30
+        });
+        var txt01 = L.marker(V3Y, {
+            icon: myIcon
+        }).addTo(map);
+
+        function onMapzoom(e) {
+            if (map.getZoom() > 8) {
+                m1x_gj00.removeFrom(map);
+                fg00.removeFrom(map);
+            } else {
+                m1x_gj00.addTo(map);
+                fg00.addTo(map);
+            }
+            if (map.getZoom() > 8) {
+                fg01.addTo(map);
+            } else {
+                fg01.removeFrom(map);
+            }
+            txt01.removeFrom(map);
         }
-    map.on('zoom',onMapzoom);
-    // var bounds = m1x_gj.getBounds();
-    // var lonlat = bounds.getCenter();
-    // var sheng=L.featureGroup();
-    // var core=L.latLng(lonlat.lat,lonlat.lng);
-    // var c = L.circleMarker(core,{radius:100,color:'#3388ff',fillColor:'#3388ff',text:"no this field!"});
-    // sheng.addLayer(c);
-    // sheng.addTo(map)
+        map.on('zoom', onMapzoom);
+        // var bounds = m1x_gj.getBounds();
+        // var lonlat = bounds.getCenter();
+        // var sheng=L.featureGroup();
+        // var core=L.latLng(lonlat.lat,lonlat.lng);
+        // var c = L.circleMarker(core,{radius:100,color:'#3388ff',fillColor:'#3388ff',text:"no this field!"});
+        // sheng.addLayer(c);
+        // sheng.addTo(map)
 
-    // new L.Marker([lonlat.lat,lonlat.lng]).addTo(map); 
-    // var xhr=new XMLHttpRequest();
-    // xhr.open("get","https://");
-    // xhr.send();
-    // xhr.onload=function(){
-    //     var data=JSON.parse(xhr.responseText).features;
-    //     for(var i=0;data.length>i;i++){
-            
-    //     }
-    // }
+        // new L.Marker([lonlat.lat,lonlat.lng]).addTo(map); 
+        // var xhr=new XMLHttpRequest();
+        // xhr.open("get","https://");
+        // xhr.send();
+        // xhr.onload=function(){
+        //     var data=JSON.parse(xhr.responseText).features;
+        //     for(var i=0;data.length>i;i++){
+
+        //     }
+        // }
     </script>
     <style>
-        .my-div-icon{
-            font-size:15px;
+        .my-div-icon {
+            font-size: 15px;
             /*background:rgb(231, 201, 201);*/
             /*width:5px;*/
-            color:red;
+            color: red;
             opacity: 0.9;
         }
     </style>
     <style>
         .legend {
-        line-height: 18px;
-        color: #555;
-    }
-    .legend i {
-        width: 18px;
-        height: 18px;
-        float: left;
-        margin-right: 8px;
-        opacity: 0.7;
-    }
+            line-height: 18px;
+            color: #555;
+        }
+        
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
     </style>
 
 </body>
