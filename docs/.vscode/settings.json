@@ -8,7 +8,7 @@
       {
           "format": "compressed",//可定制的出口CSS样式（expanded，compact，compressed，nested）
           "extensionName": ".css",
-          "savePath": "./css"
+          "savePath": "/show/css"
       }
     ],
     "liveServer.settings.port": 5501,
