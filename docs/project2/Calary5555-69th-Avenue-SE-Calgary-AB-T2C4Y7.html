@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Darwynn Warehouse: GTA40PullmanCourt-Markham-ON-M1X1E4-02</title>
+    <title>Darwynn Warehouses</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +13,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <link rel="stylesheet" href="project2.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <script type="text/javascript" src="../show/m1x-bounds.json"></script>
+    <script type="text/javascript" src="../show/t2c.json"></script>
+    <!-- <script src="../show/dist/L.LabelTextCollision.js"></script> -->
     <style>
-        .jinw-240 {
-            width: 240px;
-        }
-        
-        #warehouselist img {
-            width: 168px;
-            height: 94px;
-        }
+
     </style>
 </head>
 
@@ -52,8 +46,8 @@
             </button>
             <div class="jinh-40" style="width:108px;"></div>
         </div>
+
     </div>
-    <!-- left -->
     <div class="float-start min-vh-100 mt-2 jinw-240">
         <div class="card">
             <div class="card-header">
@@ -111,7 +105,7 @@
                     </div>
 
                     <section class="mb-1">
-                        <div class="row bg-success text-dark bg-opacity-50">
+                        <div class="row">
                             <div class="col-lg-6">
                                 <img class="img-fluid" src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80" alt="">
                             </div>
@@ -133,7 +127,7 @@
                             <div class="col-lg-6 px-lg-0">
                                 <a class="p-0 m-0" style="text-decoration: none;color: #212529;" href="GVAUnit206-208-9265AirportWayPittMeadows-BC-V3Y0G9.html">
                                     <h3 class="jinsection-title"><span>DW Pitt Meadows</span></h3>
-                                    <span class="jinsection-c text-nowrap">Unit 206-208 19265 Airport Way Pitt Meadows</span>
+                                    <span class="jinsection-c d-inline-block  text-truncate" style="max-width: 150px;"> Unit 206-208 19265 Airport Way Pitt Meadows</span>
                                     <span class="d-block jinsection-c">BC V3Y 0G9</span>
                                     <span class="d-block jinsection-c">GVA</span>
                                 </a>
@@ -171,7 +165,7 @@
                         </div>
                     </section>
                     <section class="mb-1">
-                        <div class="row">
+                        <div class="row bg-success text-dark bg-opacity-50">
                             <div class="col-lg-6">
                                 <img class="img-fluid" src="https://images.unsplash.com/photo-1494905998402-395d579af36f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="">
                             </div>
@@ -189,11 +183,14 @@
             </div>
         </div>
     </div>
+
     <script>
         var warehouse_view = {
-            point: [43.821903, -79.239407],
-            zoom: 12
+            point: [50.992663, -113.951633],
+            zoom: 10
         };
+
+        //var map = L.map('map').setView([51.505, -0.09], 13); //13城市视图 23街道视图；
         var map = L.map('map').setView(warehouse_view.point, warehouse_view.zoom);
         map.once("focus", function() {
             map.scrollWheelZoom.enable()
@@ -207,14 +204,14 @@
             zoomOffset: -1
         }).addTo(map);
         var marker = L.marker(warehouse_view.point).addTo(map)
-            .bindPopup('<br />No.01<br />GTA<br />40 Pullman Ct<br />Scarborough, ON M1X 1E4 ').openPopup();
-        // marker.bindTooltip("1	GTA	40 Pullman Court Markham ON	M1X 1E4.").openTooltip();
+            .bindPopup('<br />No.04<br />5555 69 Ave SE<br />Calgary, AB T2C 4Y7 ').openPopup();
+        // marker.bindTooltip("Calary	5555 69th Avenue SE	Calgary	AB	T2C 4Y7").openTooltip();
         var circle = L.circle(warehouse_view.point, {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.92,
             radius: 5
-        }).addTo(map).bindPopup('40-41');
+        }).addTo(map); //.bindPopup('40-41');
 
         var popup = L.popup()
             .setLatLng(warehouse_view.point)
@@ -298,7 +295,6 @@
             });
         }
         m1x_gj = L.geoJson(sD, {
-            style: style,
             onEachFeature: onEachFeature
         }).addTo(map);
         map.attributionControl.addAttribution('By <a href="https://darwynnfulfillment.com/">Darwynn</a>');
