@@ -96,7 +96,8 @@
     height: 94px;
 }
 
-#information.close {
+#information.close,
+#information2.close {
     transform: translate(-100%, 0);
 }
 
@@ -131,6 +132,7 @@
     box-sizing: border-box;
     text-align: center;
     overflow: hidden auto;
+    z-index: 1019;
     /* transition: all .2s ease; */
     box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, .1);
 }

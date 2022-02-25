@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Darwynn Warehouses</title>
-  <meta charset="utf-8" />
-  <meta name="author" content="Jin Xin C">
-  <meta name="description" content="Darwynn Warehouses Fulfillment Services Canada">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:image" content="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg">
-  <meta property="og:description" content="Darwynn Fulfillment covers all Supply Chain activities. MAKE YOUR BUSINESS GROW QUICKLY AND EFFECTIVELY">
-  <meta property="og:title" content="Darwynn Fulfillment">
-  <meta name="twitter:title" content="https://darwynnfulfillment.com">
-  <link rel="shortcut icon" href="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <title>Darwynn Warehouses</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jin Xin C">
+    <meta name="description" content="Darwynn Warehouses Fulfillment Services Canada">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg">
+    <meta property="og:description" content="Darwynn Fulfillment covers all Supply Chain activities. MAKE YOUR BUSINESS GROW QUICKLY AND EFFECTIVELY">
+    <meta property="og:title" content="Darwynn Fulfillment">
+    <meta name="twitter:title" content="https://darwynnfulfillment.com">
+    <link rel="shortcut icon" href="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="show/d/fsa_from_cities_to.txt"></script>
     <!-- <script src="show/d/FSAs.txt"></script> -->
     <script src="show/d/fsa_ProvinceTerritory.txt"></script>
     <script>
         //fsa_pt //arrFSA
-        function getJsonObjLength(jsonObj){
-            var l=0;for(var i in jsonObj){l++;}return l;
+        function getJsonObjLength(jsonObj) {
+            var l = 0;
+            for (var i in jsonObj) {
+                l++;
+            }
+            return l;
         }
-        var myObj={"A0E":{"1":1}};
+        var myObj = {
+            "A0E": {
+                "1": 1
+            }
+        };
         // for(x in fsa_province){
         //     console.log(x);//Toronto
         // }
@@ -31,25 +40,26 @@
         // }
         console.log(getJsonObjLength(fsa_from_cities["Edmonton"]));
         console.log(fsa_from_cities["Edmonton"]["A0E"]);
-        
-        var obj =new Object();
-        obj.code="001";obj.name="hello"; 
-        var str=JSON.stringify(obj);
-        console.log(str);//{"code":"001","name":"hello"}
 
-        var jsonArr=new Array();
-        for(var i=0;i<2;i++){
-            var obj=new Object();
-            obj.title="title"+i;
-            obj.value=i;
+        var obj = new Object();
+        obj.code = "001";
+        obj.name = "hello";
+        var str = JSON.stringify(obj);
+        console.log(str); //{"code":"001","name":"hello"}
+
+        var jsonArr = new Array();
+        for (var i = 0; i < 2; i++) {
+            var obj = new Object();
+            obj.title = "title" + i;
+            obj.value = i;
             jsonArr.push(obj);
         }
-        var str=JSON.stringify(jsonArr);
-        console.log(str);//[{"title":"title0","value":0},{"title":"title1","value":1}]
-        var jj='[{"acct_id":100000,"acct_name":"name0","email":"Jemail0"}]';
-        var jStr1='{"code":"001"}';
-        jStr1="{\"code\":\"001\"}";
-        var jO=JSON.parse(jStr1);
+        var str = JSON.stringify(jsonArr);
+        console.log(str); //[{"title":"title0","value":0},{"title":"title1","value":1}]
+        var jj = '[{"acct_id":100000,"acct_name":"name0","email":"Jemail0"}]';
+        var jStr1 = '{"code":"001"}';
+        jStr1 = "{\"code\":\"001\"}";
+        var jO = JSON.parse(jStr1);
         console.log(jO["code"]); // 001
     </script>
     <style>
@@ -58,47 +68,51 @@
             height: 100%;
             margin: 0;
         }
+        
         .leaflet-container {
             height: 400px;
             width: 600px;
             max-width: 100%;
             max-height: 100%;
         }
+        
         .info {
             padding: 6px 8px;
             font: 14px/16px Arial, Helvetica, sans-serif;
             background: white;
-            background: rgba(255,255,255,0.8);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
         }
+        
         .info h4 {
             margin: 0 0 5px;
             color: #777;
         }
     </style>
 </head>
+
 <body>
-  <!--https://ogp.me/ -->  
-  <!--link rel="shortcut icon" href="favicon.ico" type="image/x-icon"-->
-  <!--link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /-->
-  <!-- third-generation iPad with high-resolution Retina display: -->
-<!--link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.mozilla.org/static/img/favicon144.png"!-->
-<!-- iPhone with high-resolution Retina display: -->
-<!--link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.mozilla.org/static/img/favicon114.png"!-->
-<!-- first- and second-generation iPad: -->
-<!--link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.mozilla.org/static/img/favicon72.png"!-->
-<!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-<!--link rel="apple-touch-icon-precomposed" href="https://developer.mozilla.org/static/img/favicon57.png"!-->
-<!-- basic favicon -->
-<!--link rel="shortcut icon" href="https://developer.mozilla.org/static/img/favicon32.png"!-->
-  <!-- https://developer.mozilla.org/zh-CN/docs/learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML !-->
-<style>
+    <!--https://ogp.me/ -->
+    <!--link rel="shortcut icon" href="favicon.ico" type="image/x-icon"-->
+    <!--link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /-->
+    <!-- third-generation iPad with high-resolution Retina display: -->
+    <!--link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.mozilla.org/static/img/favicon144.png"!-->
+    <!-- iPhone with high-resolution Retina display: -->
+    <!--link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.mozilla.org/static/img/favicon114.png"!-->
+    <!-- first- and second-generation iPad: -->
+    <!--link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.mozilla.org/static/img/favicon72.png"!-->
+    <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!--link rel="apple-touch-icon-precomposed" href="https://developer.mozilla.org/static/img/favicon57.png"!-->
+    <!-- basic favicon -->
+    <!--link rel="shortcut icon" href="https://developer.mozilla.org/static/img/favicon32.png"!-->
+    <!-- https://developer.mozilla.org/zh-CN/docs/learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML !-->
+    <style>
         .pt {
             padding-top: 0px;
             padding-bottom: 20px;
         }
-
+        
         .container2 {
             max-width: 1140px;
             width: 100%;
@@ -107,7 +121,7 @@
             margin-right: auto;
             margin-left: auto;
         }
-
+        
         .row {
             display: -ms-flexbox;
             display: flex;
@@ -116,26 +130,41 @@
             margin-right: -15px;
             margin-left: -15px;
         }
-
-        .mb-2, .my-2 {
+        
+        .mb-2,
+        .my-2 {
             margin-bottom: .5rem !important;
         }
-
+        
         .col-lg-12 {
             -ms-flex: 0 0 100%;
             flex: 0 0 100%;
             max-width: 100%;
         }
-
+        
         .col-md-12 {
             -ms-flex: 0 0 100%;
             flex: 0 0 100%;
             max-width: 100%;
         }
-
-        .col,.col-1,.col-10,.col-11,.col-12,.col-2,
-        .col-3,.col-4,.col-5,.col-6,.col-7,.col-8,
-        .col-9,.col-auto,.col-lg,.col-lg-1,.col-lg-10,
+        
+        .col,
+        .col-1,
+        .col-10,
+        .col-11,
+        .col-12,
+        .col-2,
+        .col-3,
+        .col-4,
+        .col-5,
+        .col-6,
+        .col-7,
+        .col-8,
+        .col-9,
+        .col-auto,
+        .col-lg,
+        .col-lg-1,
+        .col-lg-10,
         .col-lg-11,
         .col-lg-12,
         .col-lg-2,
@@ -207,13 +236,14 @@
                                 </td>
                                 <th colspan="4" class="text-center h4"><a href="show/all.html" target="page">Darwynn Warehouses</a>
                                 </th>
-                                <td class="align-items-end"><img alt="Canadian postal district map" src="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg"  height="20">
+                                <td class="align-items-end"><img alt="Canadian postal district map" src="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg" height="20">
                                 </td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td style="border:1px solid #aaa;">Warehouse No.
-                            </td>
+                            <tr>
+                                <td style="border:1px solid #aaa;">Warehouse No.
+                                </td>
                                 <td style="border:1px solid #aaa;">Region
                                 </td>
                                 <td style="border:1px solid #aaa;"> Street
@@ -225,26 +255,23 @@
                                 <td style="border:1px solid #aaa;" colspan="1"> Postal Code
                                 </td>
                             </tr>
-                            <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">01
-                            </td>
-                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
-                                    width="5%">GTA
+                            <tr>
+                                <td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">01
                                 </td>
-                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
-                                    width="5%">40 Pullman Court
+                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;" width="5%">GTA
                                 </td>
-                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
-                                    width="5%">Markham
+                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;" width="5%">40 Pullman Court
                                 </td>
-                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
-                                    width="5%">ON
+                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;" width="5%">Markham
                                 </td>
-                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
-                                    width="5%"><a href="show/GTA40PullmanCourt-Markham-ON-M1X1E4.html" title="show a map" target="page">M1X 1E4
+                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;" width="5%">ON
+                                </td>
+                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;" width="5%"><a href="show/GTA40PullmanCourt-Markham-ON-M1X1E4.html" title="show a map" target="page">M1X 1E4
                                     </a>
                                 </td>
-                            </tr>				
-                            <tr><td width="2%">02 </td>
+                            </tr>
+                            <tr>
+                                <td width="2%">02 </td>
                                 <td width="5%">GVA
                                 </td>
                                 <td width="8%">Unit 206-208 19265 Airport Way
@@ -257,26 +284,23 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">03
-                            </td>
-                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
-                                    width="5%">Montreal
+                            <tr>
+                                <td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">03
                                 </td>
-                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
-                                    width="5%">500 Condor Street
+                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;" width="5%">Montreal
                                 </td>
-                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
-                                    width="5%">St-Eustache
+                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;" width="5%">500 Condor Street
                                 </td>
-                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
-                                    width="5%">QC
+                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;" width="5%">St-Eustache
                                 </td>
-                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
-                                    width="5%"><a href="show/Montreal.html" title="show a map" target="page">J7R 0M7
+                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;" width="5%">QC
+                                </td>
+                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;" width="5%"><a href="show/Montreal.html" title="show a map" target="page">J7R 0M7
                                     </a>
                                 </td>
-                            </tr>				
-                            <tr><td width="2%"> </td>
+                            </tr>
+                            <tr>
+                                <td width="2%"> </td>
                                 <td width="5%">Montreal
                                 </td>
                                 <td width="5%">2850 rue Botham
@@ -288,25 +312,21 @@
                                 <td width="5%"><a href="show/Montreal.html" title="show a map" target="page">H4S 1J1</a>
                                 </td>
                             </tr>
-                            <tr><td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">04
-                            </td>
-                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;"
-                                    width="5%">Calary
+                            <tr>
+                                <td style="border: 1px solid #00FF00; background-color: #E0FFE0; font-size: 135%;" width="2%">04
                                 </td>
-                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;"
-                                    width="5%">5555 69th Avenue SE
+                                <td style="border: 1px solid #FF0000; background-color: #FFE0E0; font-size: 135%;" width="5%">Calgary
                                 </td>
-                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;"
-                                    width="5%">Calary
+                                <td style="border: 1px solid #FF4000; background-color: #FFE8E0; font-size: 135%;" width="5%">5555 69th Avenue SE
                                 </td>
-                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;"
-                                    width="5%">AB
+                                <td style="border: 1px solid #FF8000; background-color: #FFF0E0; font-size: 135%;" width="5%">Calgary
                                 </td>
-                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;"
-                                    width="5%"><a href="show/Calary5555-69th-Avenue-SE-Calgary-AB-T2C4Y7.html" title="show a map" target="page">T2C 4Y7</a>
+                                <td style="border: 1px solid #FFC000; background-color: #FFF8E0; font-size: 135%;" width="5%">AB
                                 </td>
-                            </tr>			
-                            
+                                <td style="border: 1px solid #FFFF00; background-color: #FFFFE0; font-size: 135%;" width="5%"><a href="show/Calgary5555-69th-Avenue-SE-Calgary-AB-T2C4Y7.html" title="show a map" target="page">T2C 4Y7</a>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -316,7 +336,8 @@
 
         </div>
     </div>
-    
 
-  </body>
+
+</body>
+
 </html>
