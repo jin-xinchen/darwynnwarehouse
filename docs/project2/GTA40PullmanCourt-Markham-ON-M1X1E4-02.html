@@ -15,6 +15,8 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script type="text/javascript" src="../show/m1x-bounds.json"></script>
     <script type="text/javascript" src="../show/d/fsa_ProvinceTerritory.txt"></script>
+    <script type="text/javascript" src="../show/d/fsa_ServicesRemoteOfCanadaPost.txt"></script>
+    <script type="text/javascript" src="../show/d/fsa_from_cities_to.txt"></script>
     <style>
         .autocomplete {
             /*容器定位设置为 relative:*/
@@ -139,14 +141,22 @@
                 <form autocomplete="off" action="">
                     <div class="autocomplete">
 
-                        <label for="zipcodeTarget" class="form-label"> Zip Code</label>
-                        <input type="text" autocomplete="off" class="form-control" id="zipcodeTarget" placeholder="K4B">
+                        <label for="zipcodeTarget" class="form-label"> Forward Sortation Area（FSA）</label>
                         <!-- <input id="myInput" type="text" name="s" placeholder="请输入搜索内容"> -->
+
                     </div>
                     <!-- <input type="submit"> -->
                     <!-- https://www.runoob.com/w3cnote/javascript-autocomplete.html -->
                 </form>
+                <form class="row g-3">
+                    <div class="col-auto">
+                        <input type="text" autocomplete="off" class="form-control" id="zipcodeTarget" placeholder="A0M" value="A0M">
 
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-dark" id="btnSearch">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -155,22 +165,26 @@
             <div class="card-header">
                 Delivery Services
             </div>
-            <div class="card-body">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioDelivery" id="radioDelivery1" checked>
-                    <label class="form-check-label" for="radioDelivery1">
-                        fastest delivery
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioDelivery" id="radioDelivery2">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span id="DSfromto">From: Toronto</span></li>
+                <li class="list-group-item"><label class="form-check-label" for="radioDelivery1">
+                The fastest delivery 
+            </label> <span id="fastestDs" class="badge bg-success"></span><span class="spanDays">days</span></li>
+                <li class="list-group-item">
                     <label class="form-check-label" for="radioDelivery2">
-                        cheapest delivery
-                    </label>
-                </div>
-            </div>
-        </div>
+                    The cheapest delivery 
+                </label> <span id="cheapestDs" class="badge bg-success"></span><span class="spanDays">days</span>
+                </li>
+                <li class="list-group-item"><span id="RemoteS"></span></li>
+                <li class="list-group-item"><label class="form-check-label" for="radioDelivery1">
+                    The fastest delivery 
+                </label> <span id="fastestDsR"></span></li>
+                <li class="list-group-item"><label class="form-check-label" for="radioDelivery2">
+                    The cheapest delivery 
+                </label> <span id="cheapestDsR"></span></li>
 
+            </ul>
+        </div>
     </div>
     <div class="container mt-2">
         <div class="row">
@@ -504,7 +518,56 @@
         for (x in fsa_pt) {
             sites.push(...fsa_pt[x]);
         }
-        autocomplete(document.getElementById("zipcodeTarget"), sites);
+        var z_t = document.getElementById("zipcodeTarget");
+        autocomplete(z_t, sites);
+    </script>
+    <script>
+        var wlocal = "Toronto";
+        document.getElementById("btnSearch").addEventListener("click", function() {
+            var vv = z_t.value;
+            if (vv != undefined) {
+                vv = vv.toUpperCase();
+                if (fsa_from_cities[wlocal][vv] != undefined) {
+                    showDeDays(fsa_from_cities[wlocal][vv], vv);
+                }
+                if (f_s[wlocal][vv] != undefined) {
+                    showDeDaysRe(f_s[wlocal][vv], vv);
+                }
+            }
+        });
+
+        function showDeDays(s, s1) {
+            var ds = "days";
+            var d = "day";
+            if (s.s1 > 1) {
+                document.getElementById("fastestDs").innerHTML = s.s1 + " " + ds;
+            } else {
+                document.getElementById("fastestDs").innerHTML = s.s1 + " " + d;
+            }
+            if (s.s4 > 1) {
+                document.getElementById("cheapestDs").innerHTML = s.s4 + " " + ds;
+            } else {
+                document.getElementById("cheapestDs").innerHTML = s.s4 + " " + d;
+            }
+            document.getElementById("DSfromto").innerHTML = "From: " + wlocal + " to: " + s1;
+        }
+
+        function showDeDaysRe(s, s1) {
+            var ds = "days";
+            var d = "day";
+            if (s.s.s1 > 1) {
+                document.getElementById("fastestDsR").innerHTML = s.s.s1 + " " + ds;
+            } else {
+                document.getElementById("fastestDsR").innerHTML = s.s.s1 + " " + d;
+            }
+            if (s.s.s4 > 1) {
+                document.getElementById("cheapestDsR").innerHTML = s.s.s4 + " " + ds;
+            } else {
+                document.getElementById("cheapestDsR").innerHTML = s.s.s4 + " " + d;
+            }
+            document.getElementById("RemoteS").innerHTML = "Remote Except:  to " + s.Remote;
+
+        }
     </script>
     <script src="js/main-wh.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js " integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB " crossorigin="anonymous "></script>
