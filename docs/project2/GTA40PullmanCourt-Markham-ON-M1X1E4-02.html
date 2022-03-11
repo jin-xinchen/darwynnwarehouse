@@ -161,7 +161,7 @@
         </div>
 
         <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
-        <div class="card">
+        <div class="card Delivery_services">
             <div class="card-header">
                 Delivery Services
             </div>
@@ -175,6 +175,8 @@
                     The cheapest delivery 
                 </label> <span id="cheapestDs" class="badge bg-success"></span><span class="spanDays">days</span>
                 </li>
+            </ul>
+            <ul class="ulRemotes hide">
                 <li class="list-group-item"><span id="RemoteS"></span></li>
                 <li class="list-group-item"><label class="form-check-label" for="radioDelivery1">
                     The fastest delivery 
@@ -182,8 +184,12 @@
                 <li class="list-group-item"><label class="form-check-label" for="radioDelivery2">
                     The cheapest delivery 
                 </label> <span id="cheapestDsR"></span></li>
-
             </ul>
+        </div>
+        <div class="card No_delivery_services">
+            <div class="card-header text-info">
+                No Services
+            </div>
         </div>
     </div>
     <div class="container mt-2">
@@ -453,6 +459,7 @@
                             inp.value = this.getElementsByTagName("input")[0].value;
                             /*关闭自动填充列表*/
                             closeAllLists();
+                            searchDeService();
                         });
                         a.appendChild(b);
                     }
@@ -478,6 +485,8 @@
                     if (currentFocus > -1) {
                         /*模拟点击选中项*/
                         if (x) x[currentFocus].click();
+                    } else {
+                        searchDeService();
                     }
                 }
             });
@@ -523,18 +532,49 @@
     </script>
     <script>
         var wlocal = "Toronto";
-        document.getElementById("btnSearch").addEventListener("click", function() {
+
+        function searchDeService() {
             var vv = z_t.value;
             if (vv != undefined) {
                 vv = vv.toUpperCase();
                 if (fsa_from_cities[wlocal][vv] != undefined) {
+                    hideNoService();
                     showDeDays(fsa_from_cities[wlocal][vv], vv);
+                    if (f_s[wlocal][vv] != undefined) {
+                        showDeDaysRe(f_s[wlocal][vv], vv);
+                    } else {
+                        hideDeDaysRe();
+                    }
+
+                } else {
+                    showNoService();
                 }
-                if (f_s[wlocal][vv] != undefined) {
-                    showDeDaysRe(f_s[wlocal][vv], vv);
-                }
+
             }
-        });
+        }
+        document.getElementById("btnSearch").addEventListener("click", searchDeService);
+
+        function showNoService() {
+            if (document.querySelector('.card.No_delivery_services') != undefined) {
+                document.querySelector('.card.No_delivery_services').classList.add("show_Dd_Se");
+                document.querySelector('.card.No_delivery_services').classList.remove("No_delivery_services");
+            }
+            if (document.querySelector('.card.card.show_Dd_Se1') != undefined) {
+                document.querySelector('.card.card.show_Dd_Se1').classList.add("Delivery_services");
+                document.querySelector('.card.card.show_Dd_Se1').classList.remove("show_Dd_Se1");
+            }
+        }
+
+        function hideNoService() {
+            if (document.querySelector('.card.show_Dd_Se') != undefined) {
+                document.querySelector('.card.show_Dd_Se').classList.add("No_delivery_services")
+                document.querySelector('.card.show_Dd_Se').classList.remove("show_Dd_Se");
+            }
+            if (document.querySelector('.card.card.Delivery_services') != undefined) {
+                document.querySelector('.card.card.Delivery_services').classList.add("show_Dd_Se1");
+                document.querySelector('.card.card.Delivery_services').classList.remove("Delivery_services");
+            }
+        }
 
         function showDeDays(s, s1) {
             var ds = "days";
@@ -549,24 +589,28 @@
             } else {
                 document.getElementById("cheapestDs").innerHTML = s.s4 + " " + d;
             }
-            document.getElementById("DSfromto").innerHTML = "From: " + wlocal + " to: " + s1;
+            document.getElementById("DSfromto").innerHTML = "From: " + wlocal + " to: <span class='text-success'>" + s1 + "</span>";
         }
 
         function showDeDaysRe(s, s1) {
             var ds = "days";
             var d = "day";
             if (s.s.s1 > 1) {
-                document.getElementById("fastestDsR").innerHTML = s.s.s1 + " " + ds;
+                document.getElementById("fastestDsR").innerHTML = "<span class='text-warning'>" + s.s.s1 + "</span> " + ds;
             } else {
-                document.getElementById("fastestDsR").innerHTML = s.s.s1 + " " + d;
+                document.getElementById("fastestDsR").innerHTML = "<span class='text-warning'>" + s.s.s1 + "</span> " + d;
             }
             if (s.s.s4 > 1) {
-                document.getElementById("cheapestDsR").innerHTML = s.s.s4 + " " + ds;
+                document.getElementById("cheapestDsR").innerHTML = "<span class='text-warning'>" + s.s.s4 + "</span> " + ds;
             } else {
-                document.getElementById("cheapestDsR").innerHTML = s.s.s4 + " " + d;
+                document.getElementById("cheapestDsR").innerHTML = "<span class='text-warning'>" + s.s.s4 + "</span> " + d;
             }
-            document.getElementById("RemoteS").innerHTML = "Remote Except:  to " + s.Remote;
+            document.getElementById("RemoteS").innerHTML = "Remote Except:  to <span class='text-warning'>" + s.Remote + "</span>";
+            document.querySelector('ul.ulRemotes').classList.remove("hide");
+        }
 
+        function hideDeDaysRe() {
+            document.querySelector('ul.ulRemotes').classList.add("hide");
         }
     </script>
     <script src="js/main-wh.js"></script>

@@ -137,10 +137,20 @@
     box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, .1);
 }
 
-.spanDays {
+.spanDays,
+.hide {
     display: none;
 }
 
 .panelShow {
+    display: block;
+}
+
+.card.Delivery_services,
+.card.No_delivery_services {
+    display: none;
+}
+
+.show {
     display: block;
 }
