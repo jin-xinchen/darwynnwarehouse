@@ -15,6 +15,9 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script type="text/javascript" src="../show/j7r.json"></script>
     <!-- <script src="../show/dist/L.LabelTextCollision.js"></script> -->
+    <script type="text/javascript" src="../show/d/fsa_ProvinceTerritory.txt"></script>
+    <script type="text/javascript" src="../show/d/fsa_ServicesRemoteOfCanadaPost.txt"></script>
+    <script type="text/javascript" src="../show/d/fsa_from_cities_to.txt"></script>
     <style>
 
     </style>
@@ -48,10 +51,9 @@
         </div>
 
     </div>
+    <!-- left -->
     <div class="left-menu close" id="information">
-
     </div>
-
     <div class="close" id="information2">
         <div class="card">
             <div class="card-header">
@@ -60,7 +62,7 @@
 
             <div class="card-body">
                 <div class="form-check ps-0">
-                    <input class="form-check-i-canada-post" type="checkbox" value="" id="formCheckCanadaPost" checked disabled>
+                    <!-- <input class="form-check-i-canada-post" type="checkbox" value="" id="formCheckCanadaPost" checked disabled> -->
                     <label class="form-check-label" for="formCheckCanadaPost"> 
                     Canada Post</label>
                 </div>
@@ -68,25 +70,76 @@
                 <!-- <p class="card-text">Service: Priority, Xpresspost, Expedited Parcel, Regular Parcel</p> -->
             </div>
         </div>
-        <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
         <div class="card">
+            <div class="card-header">
+                Current City
+            </div>
+            <div class="card-body">
+                <label class="form-check-label">
+                        Montreal
+                    </label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <label for="zipcodeTarget">Target postal code</label>
+                <!-- 查找邮编：
+                ht tp://www.geonames.org/postalcode-search.html?q=Montreal&country=CA
+                ht tps://worldpostalcode.com/canada/ontario/Montreal -->
+            </div>
+            <div class="card-body">
+
+                <form autocomplete="off" action="">
+                    <div class="autocomplete">
+
+                        <label for="zipcodeTarget" class="form-label"> Forward Sortation Area（FSA）</label>
+                        <!-- <input id="myInput" type="text" name="s" placeholder="请输入搜索内容"> -->
+
+                    </div>
+                    <!-- <input type="submit"> -->
+                    <!-- https://www.runoob.com/w3cnote/javascript-autocomplete.html -->
+                </form>
+                <form class="row g-3">
+                    <div class="col-auto">
+                        <input type="text" autocomplete="off" class="form-control" id="zipcodeTarget" placeholder="A0M" value="A0M">
+
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-dark" id="btnSearch">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
+        <div class="card Delivery_services">
             <div class="card-header">
                 Delivery Services
             </div>
-
-            <div class="card-body">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioDelivery" id="radioDelivery1" checked>
-                    <label class="form-check-label" for="radioDelivery1">
-                        fastest delivery
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioDelivery" id="radioDelivery2">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span id="DSfromto">From: Montreal</span></li>
+                <li class="list-group-item"><label class="form-check-label" for="radioDelivery1">
+                The fastest delivery 
+            </label> <span id="fastestDs" class="badge bg-success"></span><span class="spanDays">days</span></li>
+                <li class="list-group-item">
                     <label class="form-check-label" for="radioDelivery2">
-                        cheapest delivery
-                    </label>
-                </div>
+                    The cheapest delivery 
+                </label> <span id="cheapestDs" class="badge bg-success"></span><span class="spanDays">days</span>
+                </li>
+            </ul>
+            <ul class="ulRemotes hide">
+                <li class="list-group-item"><span id="RemoteS"></span></li>
+                <li class="list-group-item"><label class="form-check-label" for="radioDelivery1">
+                    The fastest delivery 
+                </label> <span id="fastestDsR"></span></li>
+                <li class="list-group-item"><label class="form-check-label" for="radioDelivery2">
+                    The cheapest delivery 
+                </label> <span id="cheapestDsR"></span></li>
+            </ul>
+        </div>
+        <div class="card No_delivery_services">
+            <div class="card-header text-info">
+                No Services
             </div>
         </div>
     </div>
@@ -319,7 +372,11 @@
         };
         // legend.addTo(map);
     </script>
+    <script>
+        var wlocal = "Montreal";
+    </script>
     <script src="js/main-wh.js"></script>
+    <script src="js/sf.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js " integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB " crossorigin="anonymous "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js " integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13 " crossorigin="anonymous "></script>
 </body>
