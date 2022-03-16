@@ -6,8 +6,13 @@
     <title>Darwynn Warehouse: GTA40PullmanCourt-Markham-ON-M1X1E4-02</title>
 
     <meta charset="utf-8" />
+    <meta name="description" content="Darwynn Warehouses Fulfillment Services Canada">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta property="og:image" content="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg">
+    <meta property="og:description" content="Darwynn Fulfillment covers all Supply Chain activities. MAKE YOUR BUSINESS GROW QUICKLY AND EFFECTIVELY">
+    <meta property="og:title" content="Darwynn Fulfillment">
+    <meta name="twitter:title" content="https://darwynnfulfillment.com">
+    <link rel="shortcut icon" href="https://darwynnfulfillment.com/wp-content/uploads/2021/10/app-logo1.jpg">
     <!-- <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
@@ -17,6 +22,7 @@
     <script type="text/javascript" src="../show/d/fsa_ProvinceTerritory.txt"></script>
     <script type="text/javascript" src="../show/d/fsa_ServicesRemoteOfCanadaPost.txt"></script>
     <script type="text/javascript" src="../show/d/fsa_from_cities_to.txt"></script>
+    <script type="text/javascript" src="js/a0m.g"></script>
     <style>
         .autocomplete {
             /*容器定位设置为 relative:*/
@@ -112,7 +118,8 @@
             <div class="card-body">
                 <div class="form-check ps-0">
                     <!-- <input class="form-check-i-canada-post" type="checkbox" value="" id="formCheckCanadaPost" checked disabled> -->
-                    <label class="form-check-label" for="formCheckCanadaPost"> 
+                    <img src="https://www.canadapost-postescanada.ca/cpc/assets/cpc/uploads/logos/aboutus/cpc-main-logo.svg" alt="">
+                    <label class="form-check-label text-primary" for="formCheckCanadaPost"> 
                     Canada Post</label>
                 </div>
                 <!-- <h5 class="card-title">Canada Post</h5> -->
@@ -540,6 +547,9 @@
                 if (fsa_from_cities[wlocal][vv] != undefined) {
                     hideNoService();
                     showDeDays(fsa_from_cities[wlocal][vv], vv);
+
+                    drawLineOfPath(f_s[wlocal][vv], vv, L);
+
                     if (f_s[wlocal][vv] != undefined) {
                         showDeDaysRe(f_s[wlocal][vv], vv);
                     } else {
@@ -611,6 +621,32 @@
 
         function hideDeDaysRe() {
             document.querySelector('ul.ulRemotes').classList.add("hide");
+        }
+        var _tmp2 = undefined;
+
+        function drawLineOfPath(toronto2fsa, toFsa) {
+            if (_tmp2 != undefined && typeof _tmp2 === 'object') {
+                _tmp2.removeFrom(map);
+            }
+            var V3Y = [49.21078726150164, -122.68915247290388];
+            var sr = [43.821903, -79.239407];
+
+            // alert(map.getZoom()) a0m.features[0].properties.name
+            if (a0m != undefined && a0m.features != undefined) {
+                for (var i = 0; i < a0m.features.length; i++) {
+                    if (a0m.features[i].properties != undefined && a0m.features[i].properties.name == toFsa) {
+                        V3Y = [a0m.features[i].geometry.coordinates[0][0][0][1], a0m.features[i].geometry.coordinates[0][0][0][0]];
+                        _tmp2 = L.polyline([sr, V3Y], {
+                            color: 'green'
+                        });
+                        _tmp2.addTo(map);
+                        if (map.getZoom() > 8) {
+                            map.zoomOut(8);
+                        }
+                        // alert(typeof _tmp2);
+                    }
+                }
+            }
         }
     </script>
     <script src="js/main-wh.js"></script>
