@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shipment-info xmlns="http://www.canadapost.ca/ws/shipment-v8">
+    <customer-request-id>DARWH02001SO070722000009</customer-request-id>
+    <shipment-id>123361657223705231</shipment-id>
+    <shipment-status>created</shipment-status>
+    <links>
+        <link rel="self" href="https://soa-gw.canadapost.ca/rs/0009833772/0009833772/shipment/123361657223705231" media-type="application/vnd.cpc.shipment-v8+xml"/>
+        <link rel="details" href="https://soa-gw.canadapost.ca/rs/0009833772/0009833772/shipment/123361657223705231/details" media-type="application/vnd.cpc.shipment-v8+xml"/>
+        <link rel="group" href="https://soa-gw.canadapost.ca/rs/0009833772/0009833772/shipment?groupId=2022-07-07" media-type="application/vnd.cpc.shipment-v8+xml"/>
+        <link rel="price" href="https://soa-gw.canadapost.ca/rs/0009833772/0009833772/shipment/123361657223705231/price" media-type="application/vnd.cpc.shipment-v8+xml"/>
+        <link rel="label" href="https://soa-gw.canadapost.ca/rs/artifact/6392e3e393b5dd4b/10349738123/0" media-type="application/pdf" index="0"/>
+    </links>
+</shipment-info>

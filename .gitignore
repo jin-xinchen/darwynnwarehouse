@@ -37,3 +37,8 @@ bower_components
 .tmp
 package-lock.json
 .publish
+
+/docs/show/scss/*.css
+/docs/show/scss/*.css.map
+/docs/project2/project2.css.map
+/docs/darwynnmv301/js/*.min.js

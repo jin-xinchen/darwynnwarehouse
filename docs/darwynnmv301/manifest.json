@@ -1,0 +1,35 @@
+{
+    "name": "Darwynn-Jin",
+    "description": "Darwynn Fulfillment",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "js/background.js"
+            //,
+            //"scripts": ["js/event.js"]
+    },
+    "host_permissions": [
+        "http://*/*", "https://*/*"
+    ],
+    "permissions": ["contextMenus", "tabs",
+        "storage", "unlimitedStorage",
+        "activeTab", "scripting",
+        "alarms"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/jin16.png",
+            "32": "/images/jin32.png",
+            "48": "/images/jin48.png",
+            "128": "/images/jin128.png"
+        }
+    },
+    "icons": {
+        "16": "/images/jin16.png",
+        "32": "/images/jin32.png",
+        "48": "/images/jin48.png",
+        "128": "/images/jin128.png"
+    },
+    "options_page": "options.html"
+}

@@ -1,0 +1,558 @@
+{
+    "id": 4821458977014,
+    "admin_graphql_api_id": "gid://shopify/Order/4821458977014",
+    "app_id": 580111,
+    "browser_ip": "198.48.149.69",
+    "buyer_accepts_marketing": false,
+    "cancel_reason": null,
+    "cancelled_at": null,
+    "cart_token": "f9a3cb16d41e5f2e08aa2da0a8bb2cb1",
+    "checkout_id": 32809047752950,
+    "checkout_token": "c2cc232484b93f9553f9cabd7b97b60c",
+    "client_details": {
+        "accept_language": "en-CA,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+        "browser_height": null,
+        "browser_ip": "198.48.149.69",
+        "browser_width": null,
+        "session_hash": null,
+        "user_agent": "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Mobile Safari/537.36"
+    },
+    "closed_at": "2022-07-04T15:56:02-04:00",
+    "confirmed": true,
+    "contact_email": "christine@phaneuf.me",
+    "created_at": "2022-07-01T16:01:15-04:00",
+    "currency": "CAD",
+    "current_subtotal_price": "17.50",
+    "current_subtotal_price_set": {
+        "shop_money": {
+            "amount": "17.50",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "17.50",
+            "currency_code": "CAD"
+        }
+    },
+    "current_total_discounts": "7.49",
+    "current_total_discounts_set": {
+        "shop_money": {
+            "amount": "7.49",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "7.49",
+            "currency_code": "CAD"
+        }
+    },
+    "current_total_duties_set": null,
+    "current_total_price": "28.87",
+    "current_total_price_set": {
+        "shop_money": {
+            "amount": "28.87",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "28.87",
+            "currency_code": "CAD"
+        }
+    },
+    "current_total_tax": "1.38",
+    "current_total_tax_set": {
+        "shop_money": {
+            "amount": "1.38",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "1.38",
+            "currency_code": "CAD"
+        }
+    },
+    "customer_locale": "en",
+    "device_id": null,
+    "discount_codes": [
+        {
+            "code": "SUPPS",
+            "amount": "7.49",
+            "type": "percentage"
+        }
+    ],
+    "email": "christine@phaneuf.me",
+    "estimated_taxes": false,
+    "financial_status": "paid",
+    "fulfillment_status": "fulfilled",
+    "gateway": "shopify_payments",
+    "landing_site": "/",
+    "landing_site_ref": null,
+    "location_id": null,
+    "name": "SPBM1565",
+    "note": null,
+    "note_attributes": [],
+    "number": 565,
+    "order_number": 1565,
+    "order_status_url": "https://www.benemaxhealth.com/56395235505/orders/b0f44d174caeaa62802d8a7b396797a9/authenticate?key=8bc5ca2bfe9fac99bfc9ebc2c32fa773",
+    "original_total_duties_set": null,
+    "payment_gateway_names": [
+        "shopify_payments"
+    ],
+    "phone": null,
+    "presentment_currency": "CAD",
+    "processed_at": "2022-07-01T16:01:14-04:00",
+    "processing_method": "direct",
+    "reference": null,
+    "referring_site": "https://www.google.com/",
+    "source_identifier": null,
+    "source_name": "580111",
+    "source_url": null,
+    "subtotal_price": "17.50",
+    "subtotal_price_set": {
+        "shop_money": {
+            "amount": "17.50",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "17.50",
+            "currency_code": "CAD"
+        }
+    },
+    "tags": "",
+    "tax_lines": [
+        {
+            "price": "1.38",
+            "rate": 0.05,
+            "title": "GST",
+            "price_set": {
+                "shop_money": {
+                    "amount": "1.38",
+                    "currency_code": "CAD"
+                },
+                "presentment_money": {
+                    "amount": "1.38",
+                    "currency_code": "CAD"
+                }
+            },
+            "channel_liable": false
+        }
+    ],
+    "taxes_included": false,
+    "test": false,
+    "token": "b0f44d174caeaa62802d8a7b396797a9",
+    "total_discounts": "7.49",
+    "total_discounts_set": {
+        "shop_money": {
+            "amount": "7.49",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "7.49",
+            "currency_code": "CAD"
+        }
+    },
+    "total_line_items_price": "24.99",
+    "total_line_items_price_set": {
+        "shop_money": {
+            "amount": "24.99",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "24.99",
+            "currency_code": "CAD"
+        }
+    },
+    "total_outstanding": "0.00",
+    "total_price": "28.87",
+    "total_price_set": {
+        "shop_money": {
+            "amount": "28.87",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "28.87",
+            "currency_code": "CAD"
+        }
+    },
+    "total_price_usd": "22.42",
+    "total_shipping_price_set": {
+        "shop_money": {
+            "amount": "9.99",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "9.99",
+            "currency_code": "CAD"
+        }
+    },
+    "total_tax": "1.38",
+    "total_tax_set": {
+        "shop_money": {
+            "amount": "1.38",
+            "currency_code": "CAD"
+        },
+        "presentment_money": {
+            "amount": "1.38",
+            "currency_code": "CAD"
+        }
+    },
+    "total_tip_received": "0.00",
+    "total_weight": 142,
+    "updated_at": "2022-07-04T21:57:00-04:00",
+    "user_id": null,
+    "billing_address": {
+        "first_name": "Christine",
+        "address1": "6148 Bowness Road Northwest",
+        "phone": "+14033906156",
+        "city": "Calgary",
+        "zip": "T3B 0E1",
+        "province": "Alberta",
+        "country": "Canada",
+        "last_name": "Phaneuf",
+        "address2": "202",
+        "company": "",
+        "latitude": 51.08410199999999,
+        "longitude": -114.1759193,
+        "name": "Christine Phaneuf",
+        "country_code": "CA",
+        "province_code": "AB"
+    },
+    "customer": {
+        "id": 6260649001206,
+        "email": "christine@phaneuf.me",
+        "accepts_marketing": true,
+        "created_at": "2022-07-01T16:00:03-04:00",
+        "updated_at": "2022-07-04T14:22:47-04:00",
+        "first_name": "Christine",
+        "last_name": "Phaneuf",
+        "orders_count": 1,
+        "state": "disabled",
+        "total_spent": "28.87",
+        "last_order_id": 4821458977014,
+        "note": null,
+        "verified_email": true,
+        "multipass_identifier": null,
+        "tax_exempt": false,
+        "phone": null,
+        "tags": "",
+        "last_order_name": "SPBM1565",
+        "currency": "CAD",
+        "accepts_marketing_updated_at": "2022-07-04T14:22:47-04:00",
+        "marketing_opt_in_level": "single_opt_in",
+        "tax_exemptions": [],
+        "sms_marketing_consent": null,
+        "admin_graphql_api_id": "gid://shopify/Customer/6260649001206",
+        "default_address": {
+            "id": 7781698306294,
+            "customer_id": 6260649001206,
+            "first_name": "Christine",
+            "last_name": "Phaneuf",
+            "company": "",
+            "address1": "6148 Bowness Road Northwest",
+            "address2": "202",
+            "city": "Calgary",
+            "province": "Alberta",
+            "country": "Canada",
+            "zip": "T3B 0E1",
+            "phone": "+14033906156",
+            "name": "Christine Phaneuf",
+            "province_code": "AB",
+            "country_code": "CA",
+            "country_name": "Canada",
+            "default": true
+        }
+    },
+    "discount_applications": [
+        {
+            "target_type": "line_item",
+            "type": "discount_code",
+            "value": "30.0",
+            "value_type": "percentage",
+            "allocation_method": "across",
+            "target_selection": "entitled",
+            "code": "SUPPS"
+        }
+    ],
+    "fulfillments": [
+        {
+            "id": 4325527191798,
+            "admin_graphql_api_id": "gid://shopify/Fulfillment/4325527191798",
+            "created_at": "2022-07-04T15:56:02-04:00",
+            "location_id": 62205558961,
+            "name": "SPBM1565.1",
+            "order_id": 4821458977014,
+            "origin_address": {},
+            "receipt": {},
+            "service": "manual",
+            "shipment_status": "in_transit",
+            "status": "success",
+            "tracking_company": "CANADAPOST",
+            "tracking_number": "9833772137827333",
+            "tracking_numbers": [
+                "9833772137827333"
+            ],
+            "tracking_url": "https://www.canadapost.ca/track-reperage/en#/search?searchFor=9833772137827333",
+            "tracking_urls": [
+                "https://www.canadapost.ca/track-reperage/en#/search?searchFor=9833772137827333"
+            ],
+            "updated_at": "2022-07-04T21:57:00-04:00",
+            "line_items": [
+                {
+                    "id": 12316689400054,
+                    "admin_graphql_api_id": "gid://shopify/LineItem/12316689400054",
+                    "fulfillable_quantity": 0,
+                    "fulfillment_service": "manual",
+                    "fulfillment_status": "fulfilled",
+                    "gift_card": false,
+                    "grams": 142,
+                    "name": "Evening Primrose Oil - 60 x 1000mg Plant-Based Softgels",
+                    "origin_location": {
+                        "id": 3417053200630,
+                        "country_code": "CA",
+                        "province_code": "ON",
+                        "name": "BENEMAX Health & Wellness",
+                        "address1": "1936 McCowan Road",
+                        "address2": "",
+                        "city": "Scarborough",
+                        "zip": "M1S 4K1"
+                    },
+                    "price": "24.99",
+                    "price_set": {
+                        "shop_money": {
+                            "amount": "24.99",
+                            "currency_code": "CAD"
+                        },
+                        "presentment_money": {
+                            "amount": "24.99",
+                            "currency_code": "CAD"
+                        }
+                    },
+                    "product_exists": true,
+                    "product_id": 6687746556081,
+                    "properties": [],
+                    "quantity": 1,
+                    "requires_shipping": true,
+                    "sku": "883173241186",
+                    "taxable": true,
+                    "title": "Evening Primrose Oil - 60 x 1000mg Plant-Based Softgels",
+                    "total_discount": "0.00",
+                    "total_discount_set": {
+                        "shop_money": {
+                            "amount": "0.00",
+                            "currency_code": "CAD"
+                        },
+                        "presentment_money": {
+                            "amount": "0.00",
+                            "currency_code": "CAD"
+                        }
+                    },
+                    "variant_id": 39780461510833,
+                    "variant_inventory_management": "shopify",
+                    "variant_title": "",
+                    "vendor": "Benemax Health",
+                    "tax_lines": [
+                        {
+                            "channel_liable": false,
+                            "price": "0.88",
+                            "price_set": {
+                                "shop_money": {
+                                    "amount": "0.88",
+                                    "currency_code": "CAD"
+                                },
+                                "presentment_money": {
+                                    "amount": "0.88",
+                                    "currency_code": "CAD"
+                                }
+                            },
+                            "rate": 0.05,
+                            "title": "GST"
+                        }
+                    ],
+                    "duties": [],
+                    "discount_allocations": [
+                        {
+                            "amount": "7.49",
+                            "amount_set": {
+                                "shop_money": {
+                                    "amount": "7.49",
+                                    "currency_code": "CAD"
+                                },
+                                "presentment_money": {
+                                    "amount": "7.49",
+                                    "currency_code": "CAD"
+                                }
+                            },
+                            "discount_application_index": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "line_items": [
+        {
+            "id": 12316689400054,
+            "admin_graphql_api_id": "gid://shopify/LineItem/12316689400054",
+            "fulfillable_quantity": 0,
+            "fulfillment_service": "manual",
+            "fulfillment_status": "fulfilled",
+            "gift_card": false,
+            "grams": 142,
+            "name": "Evening Primrose Oil - 60 x 1000mg Plant-Based Softgels",
+            "origin_location": {
+                "id": 3417053200630,
+                "country_code": "CA",
+                "province_code": "ON",
+                "name": "BENEMAX Health & Wellness",
+                "address1": "1936 McCowan Road",
+                "address2": "",
+                "city": "Scarborough",
+                "zip": "M1S 4K1"
+            },
+            "price": "24.99",
+            "price_set": {
+                "shop_money": {
+                    "amount": "24.99",
+                    "currency_code": "CAD"
+                },
+                "presentment_money": {
+                    "amount": "24.99",
+                    "currency_code": "CAD"
+                }
+            },
+            "product_exists": true,
+            "product_id": 6687746556081,
+            "properties": [],
+            "quantity": 1,
+            "requires_shipping": true,
+            "sku": "883173241186",
+            "taxable": true,
+            "title": "Evening Primrose Oil - 60 x 1000mg Plant-Based Softgels",
+            "total_discount": "0.00",
+            "total_discount_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "CAD"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "CAD"
+                }
+            },
+            "variant_id": 39780461510833,
+            "variant_inventory_management": "shopify",
+            "variant_title": "",
+            "vendor": "Benemax Health",
+            "tax_lines": [
+                {
+                    "channel_liable": false,
+                    "price": "0.88",
+                    "price_set": {
+                        "shop_money": {
+                            "amount": "0.88",
+                            "currency_code": "CAD"
+                        },
+                        "presentment_money": {
+                            "amount": "0.88",
+                            "currency_code": "CAD"
+                        }
+                    },
+                    "rate": 0.05,
+                    "title": "GST"
+                }
+            ],
+            "duties": [],
+            "discount_allocations": [
+                {
+                    "amount": "7.49",
+                    "amount_set": {
+                        "shop_money": {
+                            "amount": "7.49",
+                            "currency_code": "CAD"
+                        },
+                        "presentment_money": {
+                            "amount": "7.49",
+                            "currency_code": "CAD"
+                        }
+                    },
+                    "discount_application_index": 0
+                }
+            ]
+        }
+    ],
+    "payment_details": {
+        "credit_card_bin": "451015",
+        "avs_result_code": "Z",
+        "cvv_result_code": null,
+        "credit_card_number": "•••• •••• •••• 7486",
+        "credit_card_company": "Visa"
+    },
+    "payment_terms": null,
+    "refunds": [],
+    "shipping_address": {
+        "first_name": "Christine",
+        "address1": "6148 Bowness Road Northwest",
+        "phone": "+14033906156",
+        "city": "Calgary",
+        "zip": "T3B 0E1",
+        "province": "Alberta",
+        "country": "Canada",
+        "last_name": "Phaneuf",
+        "address2": "202",
+        "company": "",
+        "latitude": null,
+        "longitude": null,
+        "name": "Christine Phaneuf",
+        "country_code": "CA",
+        "province_code": "AB"
+    },
+    "shipping_lines": [
+        {
+            "id": 4001276231926,
+            "carrier_identifier": null,
+            "code": "Standard",
+            "delivery_category": null,
+            "discounted_price": "9.99",
+            "discounted_price_set": {
+                "shop_money": {
+                    "amount": "9.99",
+                    "currency_code": "CAD"
+                },
+                "presentment_money": {
+                    "amount": "9.99",
+                    "currency_code": "CAD"
+                }
+            },
+            "phone": null,
+            "price": "9.99",
+            "price_set": {
+                "shop_money": {
+                    "amount": "9.99",
+                    "currency_code": "CAD"
+                },
+                "presentment_money": {
+                    "amount": "9.99",
+                    "currency_code": "CAD"
+                }
+            },
+            "requested_fulfillment_service_id": null,
+            "source": "shopify",
+            "title": "Standard",
+            "tax_lines": [
+                {
+                    "channel_liable": false,
+                    "price": "0.50",
+                    "price_set": {
+                        "shop_money": {
+                            "amount": "0.50",
+                            "currency_code": "CAD"
+                        },
+                        "presentment_money": {
+                            "amount": "0.50",
+                            "currency_code": "CAD"
+                        }
+                    },
+                    "rate": 0.05,
+                    "title": "GST"
+                }
+            ],
+            "discount_allocations": []
+        }
+    ]
+}

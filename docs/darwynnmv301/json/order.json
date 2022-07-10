@@ -1,0 +1,543 @@
+{
+    "order": {
+        "id": 4825624150262,
+        "admin_graphql_api_id": "gid://shopify/Order/4825624150262",
+        "app_id": 580111,
+        "browser_ip": "192.0.235.199",
+        "buyer_accepts_marketing": false,
+        "cancel_reason": null,
+        "cancelled_at": null,
+        "cart_token": "e17cc150442170184be41919c05f350e",
+        "checkout_id": 32818280038646,
+        "checkout_token": "a5875dcfcd4acf70dfd088cf731cc5d3",
+        "client_details": {
+            "accept_language": "en",
+            "browser_height": null,
+            "browser_ip": "192.0.235.199",
+            "browser_width": null,
+            "session_hash": null,
+            "user_agent": "Mozilla/5.0 (Linux; Android 9; SAMSUNG SM-N950W) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/17.0 Chrome/96.0.4664.104 Mobile Safari/537.36"
+        },
+        "closed_at": "2022-07-05T12:17:51-04:00",
+        "confirmed": true,
+        "contact_email": "elizabeth.tozer@hotmail.com",
+        "created_at": "2022-07-05T08:58:20-04:00",
+        "currency": "CAD",
+        "current_subtotal_price": "50.38",
+        "current_subtotal_price_set": {
+            "shop_money": {
+                "amount": "50.38",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "50.38",
+                "currency_code": "CAD"
+            }
+        },
+        "current_total_discounts": "21.58",
+        "current_total_discounts_set": {
+            "shop_money": {
+                "amount": "21.58",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "21.58",
+                "currency_code": "CAD"
+            }
+        },
+        "current_total_duties_set": null,
+        "current_total_price": "56.93",
+        "current_total_price_set": {
+            "shop_money": {
+                "amount": "56.93",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "56.93",
+                "currency_code": "CAD"
+            }
+        },
+        "current_total_tax": "6.55",
+        "current_total_tax_set": {
+            "shop_money": {
+                "amount": "6.55",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "6.55",
+                "currency_code": "CAD"
+            }
+        },
+        "customer_locale": "en",
+        "device_id": null,
+        "discount_codes": [
+            {
+                "code": "SUPPS",
+                "amount": "21.58",
+                "type": "percentage"
+            }
+        ],
+        "email": "elizabeth.tozer@hotmail.com",
+        "estimated_taxes": false,
+        "financial_status": "paid",
+        "fulfillment_status": "fulfilled",
+        "gateway": "shopify_payments",
+        "landing_site": null,
+        "landing_site_ref": null,
+        "location_id": null,
+        "name": "SPBM1571",
+        "note": null,
+        "note_attributes": [],
+        "number": 571,
+        "order_number": 1571,
+        "order_status_url": "https://www.benemaxhealth.com/56395235505/orders/cfc8ffaf8f6e31c132b9b8864e0dd641/authenticate?key=db0ebb68ccad6008cc912cdf97da7236",
+        "original_total_duties_set": null,
+        "payment_gateway_names": [
+            "shopify_payments"
+        ],
+        "phone": null,
+        "presentment_currency": "CAD",
+        "processed_at": "2022-07-05T08:58:16-04:00",
+        "processing_method": "wallet",
+        "reference": "42758714383d7b5d3b87c9b884685b52",
+        "referring_site": null,
+        "source_identifier": "42758714383d7b5d3b87c9b884685b52",
+        "source_name": "web",
+        "source_url": null,
+        "subtotal_price": "50.38",
+        "subtotal_price_set": {
+            "shop_money": {
+                "amount": "50.38",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "50.38",
+                "currency_code": "CAD"
+            }
+        },
+        "tags": "",
+        "tax_lines": [
+            {
+                "price": "6.55",
+                "rate": 0.13,
+                "title": "HST",
+                "price_set": {
+                    "shop_money": {
+                        "amount": "6.55",
+                        "currency_code": "CAD"
+                    },
+                    "presentment_money": {
+                        "amount": "6.55",
+                        "currency_code": "CAD"
+                    }
+                },
+                "channel_liable": false
+            }
+        ],
+        "taxes_included": false,
+        "test": false,
+        "token": "cfc8ffaf8f6e31c132b9b8864e0dd641",
+        "total_discounts": "21.58",
+        "total_discounts_set": {
+            "shop_money": {
+                "amount": "21.58",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "21.58",
+                "currency_code": "CAD"
+            }
+        },
+        "total_line_items_price": "71.96",
+        "total_line_items_price_set": {
+            "shop_money": {
+                "amount": "71.96",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "71.96",
+                "currency_code": "CAD"
+            }
+        },
+        "total_outstanding": "0.00",
+        "total_price": "56.93",
+        "total_price_set": {
+            "shop_money": {
+                "amount": "56.93",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "56.93",
+                "currency_code": "CAD"
+            }
+        },
+        "total_price_usd": "44.27",
+        "total_shipping_price_set": {
+            "shop_money": {
+                "amount": "0.00",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "0.00",
+                "currency_code": "CAD"
+            }
+        },
+        "total_tax": "6.55",
+        "total_tax_set": {
+            "shop_money": {
+                "amount": "6.55",
+                "currency_code": "CAD"
+            },
+            "presentment_money": {
+                "amount": "6.55",
+                "currency_code": "CAD"
+            }
+        },
+        "total_tip_received": "0.00",
+        "total_weight": 0,
+        "updated_at": "2022-07-06T11:17:29-04:00",
+        "user_id": null,
+        "billing_address": {
+            "first_name": "Elizabeth",
+            "address1": "192 Berry Street",
+            "phone": "+16479996695",
+            "city": "Shelburne",
+            "zip": "L9V 3E1",
+            "province": "Ontario",
+            "country": "Canada",
+            "last_name": "Tozer",
+            "address2": null,
+            "company": "Elizabeth's Home Child Care",
+            "latitude": null,
+            "longitude": null,
+            "name": "Elizabeth Tozer",
+            "country_code": "CA",
+            "province_code": "ON"
+        },
+        "customer": {
+            "id": 6264302141686,
+            "email": "elizabeth.tozer@hotmail.com",
+            "accepts_marketing": false,
+            "created_at": "2022-07-05T08:58:20-04:00",
+            "updated_at": "2022-07-05T08:58:21-04:00",
+            "first_name": "Elizabeth",
+            "last_name": "Tozer",
+            "orders_count": 1,
+            "state": "disabled",
+            "total_spent": "56.93",
+            "last_order_id": 4825624150262,
+            "note": null,
+            "verified_email": true,
+            "multipass_identifier": null,
+            "tax_exempt": false,
+            "phone": null,
+            "tags": "",
+            "last_order_name": "SPBM1571",
+            "currency": "CAD",
+            "accepts_marketing_updated_at": "2022-07-05T08:58:20-04:00",
+            "marketing_opt_in_level": null,
+            "tax_exemptions": [],
+            "sms_marketing_consent": null,
+            "admin_graphql_api_id": "gid://shopify/Customer/6264302141686",
+            "default_address": {
+                "id": 7785488613622,
+                "customer_id": 6264302141686,
+                "first_name": "Elizabeth",
+                "last_name": "Tozer",
+                "company": "Elizabeth's Home Child Care",
+                "address1": "192 Berry Street",
+                "address2": null,
+                "city": "Shelburne",
+                "province": "Ontario",
+                "country": "Canada",
+                "zip": "L9V 3E1",
+                "phone": "16479996695",
+                "name": "Elizabeth Tozer",
+                "province_code": "ON",
+                "country_code": "CA",
+                "country_name": "Canada",
+                "default": true
+            }
+        },
+        "discount_applications": [
+            {
+                "target_type": "line_item",
+                "type": "discount_code",
+                "value": "30.0",
+                "value_type": "percentage",
+                "allocation_method": "across",
+                "target_selection": "entitled",
+                "code": "SUPPS"
+            }
+        ],
+        "fulfillments": [
+            {
+                "id": 4326769230070,
+                "admin_graphql_api_id": "gid://shopify/Fulfillment/4326769230070",
+                "created_at": "2022-07-05T12:17:51-04:00",
+                "location_id": 62205558961,
+                "name": "SPBM1571.1",
+                "order_id": 4825624150262,
+                "origin_address": {},
+                "receipt": {},
+                "service": "manual",
+                "shipment_status": "delivered",
+                "status": "success",
+                "tracking_company": "Canada Post",
+                "tracking_number": "9833772200673331",
+                "tracking_numbers": [
+                    "9833772200673331"
+                ],
+                "tracking_url": "https://www.canadapost.ca/track-reperage/en#/search?searchFor=9833772200673331",
+                "tracking_urls": [
+                    "https://www.canadapost.ca/track-reperage/en#/search?searchFor=9833772200673331"
+                ],
+                "updated_at": "2022-07-06T11:17:29-04:00",
+                "line_items": [
+                    {
+                        "id": 12325031248118,
+                        "admin_graphql_api_id": "gid://shopify/LineItem/12325031248118",
+                        "fulfillable_quantity": 0,
+                        "fulfillment_service": "manual",
+                        "fulfillment_status": "fulfilled",
+                        "gift_card": false,
+                        "grams": 0,
+                        "name": "BeneMAX Sleep Gummies 100 Gummies Package",
+                        "origin_location": {
+                            "id": 3462479741174,
+                            "country_code": "CA",
+                            "province_code": "ON",
+                            "name": "Benemax Warehouse",
+                            "address1": "1936 McCowan Road",
+                            "address2": "",
+                            "city": "Scarborough",
+                            "zip": "M1S 4K1"
+                        },
+                        "price": "17.99",
+                        "price_set": {
+                            "shop_money": {
+                                "amount": "17.99",
+                                "currency_code": "CAD"
+                            },
+                            "presentment_money": {
+                                "amount": "17.99",
+                                "currency_code": "CAD"
+                            }
+                        },
+                        "product_exists": true,
+                        "product_id": 7702624207094,
+                        "properties": [],
+                        "quantity": 4,
+                        "requires_shipping": true,
+                        "sku": "845552001606",
+                        "taxable": true,
+                        "title": "BeneMAX Sleep Gummies 100 Gummies Package",
+                        "total_discount": "0.00",
+                        "total_discount_set": {
+                            "shop_money": {
+                                "amount": "0.00",
+                                "currency_code": "CAD"
+                            },
+                            "presentment_money": {
+                                "amount": "0.00",
+                                "currency_code": "CAD"
+                            }
+                        },
+                        "variant_id": 43681585725686,
+                        "variant_inventory_management": "shopify",
+                        "variant_title": null,
+                        "vendor": "BENEMAX Health & Wellness",
+                        "tax_lines": [
+                            {
+                                "channel_liable": false,
+                                "price": "6.55",
+                                "price_set": {
+                                    "shop_money": {
+                                        "amount": "6.55",
+                                        "currency_code": "CAD"
+                                    },
+                                    "presentment_money": {
+                                        "amount": "6.55",
+                                        "currency_code": "CAD"
+                                    }
+                                },
+                                "rate": 0.13,
+                                "title": "HST"
+                            }
+                        ],
+                        "duties": [],
+                        "discount_allocations": [
+                            {
+                                "amount": "21.58",
+                                "amount_set": {
+                                    "shop_money": {
+                                        "amount": "21.58",
+                                        "currency_code": "CAD"
+                                    },
+                                    "presentment_money": {
+                                        "amount": "21.58",
+                                        "currency_code": "CAD"
+                                    }
+                                },
+                                "discount_application_index": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "line_items": [
+            {
+                "id": 12325031248118,
+                "admin_graphql_api_id": "gid://shopify/LineItem/12325031248118",
+                "fulfillable_quantity": 0,
+                "fulfillment_service": "manual",
+                "fulfillment_status": "fulfilled",
+                "gift_card": false,
+                "grams": 0,
+                "name": "BeneMAX Sleep Gummies 100 Gummies Package",
+                "origin_location": {
+                    "id": 3462479741174,
+                    "country_code": "CA",
+                    "province_code": "ON",
+                    "name": "Benemax Warehouse",
+                    "address1": "1936 McCowan Road",
+                    "address2": "",
+                    "city": "Scarborough",
+                    "zip": "M1S 4K1"
+                },
+                "price": "17.99",
+                "price_set": {
+                    "shop_money": {
+                        "amount": "17.99",
+                        "currency_code": "CAD"
+                    },
+                    "presentment_money": {
+                        "amount": "17.99",
+                        "currency_code": "CAD"
+                    }
+                },
+                "product_exists": true,
+                "product_id": 7702624207094,
+                "properties": [],
+                "quantity": 4,
+                "requires_shipping": true,
+                "sku": "845552001606",
+                "taxable": true,
+                "title": "BeneMAX Sleep Gummies 100 Gummies Package",
+                "total_discount": "0.00",
+                "total_discount_set": {
+                    "shop_money": {
+                        "amount": "0.00",
+                        "currency_code": "CAD"
+                    },
+                    "presentment_money": {
+                        "amount": "0.00",
+                        "currency_code": "CAD"
+                    }
+                },
+                "variant_id": 43681585725686,
+                "variant_inventory_management": "shopify",
+                "variant_title": null,
+                "vendor": "BENEMAX Health & Wellness",
+                "tax_lines": [
+                    {
+                        "channel_liable": false,
+                        "price": "6.55",
+                        "price_set": {
+                            "shop_money": {
+                                "amount": "6.55",
+                                "currency_code": "CAD"
+                            },
+                            "presentment_money": {
+                                "amount": "6.55",
+                                "currency_code": "CAD"
+                            }
+                        },
+                        "rate": 0.13,
+                        "title": "HST"
+                    }
+                ],
+                "duties": [],
+                "discount_allocations": [
+                    {
+                        "amount": "21.58",
+                        "amount_set": {
+                            "shop_money": {
+                                "amount": "21.58",
+                                "currency_code": "CAD"
+                            },
+                            "presentment_money": {
+                                "amount": "21.58",
+                                "currency_code": "CAD"
+                            }
+                        },
+                        "discount_application_index": 0
+                    }
+                ]
+            }
+        ],
+        "payment_details": {
+            "credit_card_bin": "545756",
+            "avs_result_code": "Y",
+            "cvv_result_code": null,
+            "credit_card_number": "•••• •••• •••• 9121",
+            "credit_card_company": "Mastercard"
+        },
+        "payment_terms": null,
+        "refunds": [],
+        "shipping_address": {
+            "first_name": "Elizabeth",
+            "address1": "192 Berry Street",
+            "phone": "16479996695",
+            "city": "Shelburne",
+            "zip": "L9V 3E1",
+            "province": "Ontario",
+            "country": "Canada",
+            "last_name": "Tozer",
+            "address2": null,
+            "company": "Elizabeth's Home Child Care",
+            "latitude": null,
+            "longitude": null,
+            "name": "Elizabeth Tozer",
+            "country_code": "CA",
+            "province_code": "ON"
+        },
+        "shipping_lines": [
+            {
+                "id": 4003564126454,
+                "carrier_identifier": "650f1a14fa979ec5c74d063e968411d4",
+                "code": "Standard",
+                "delivery_category": null,
+                "discounted_price": "0.00",
+                "discounted_price_set": {
+                    "shop_money": {
+                        "amount": "0.00",
+                        "currency_code": "CAD"
+                    },
+                    "presentment_money": {
+                        "amount": "0.00",
+                        "currency_code": "CAD"
+                    }
+                },
+                "phone": null,
+                "price": "0.00",
+                "price_set": {
+                    "shop_money": {
+                        "amount": "0.00",
+                        "currency_code": "CAD"
+                    },
+                    "presentment_money": {
+                        "amount": "0.00",
+                        "currency_code": "CAD"
+                    }
+                },
+                "requested_fulfillment_service_id": null,
+                "source": "shopify",
+                "title": "Standard",
+                "tax_lines": [],
+                "discount_allocations": []
+            }
+        ]
+    }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jin fabricjs</title>
+    <script src="../fabric.js"></script>
+</head>
+
+<body>
+    <!-- jspang.com/article/20  youtube.com/watch?v=zvmVH4K5mhg-->
+    <img id="img01" src="https://images.unsplash.com/photo-1592085198739-ffcad7f36b54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" style="display: none;">
+
+    <canvas id="c" width="800" height="800"></canvas>
+    <canvas id="c1" width="800" height="800"></canvas>
+    <script>
+        var my_canvas = new fabric.Canvas("c");
+        var rect = new fabric.Rect({
+            left: 100,
+            top: 100,
+            fill: "red",
+            width: 30,
+            height: 60
+        });
+        my_canvas.add(rect);
+        var circle = new fabric.Circle({
+            radius: 50,
+            fill: 'green',
+            left: 200,
+            height: 200
+        });
+        my_canvas.add(circle);
+        var triangle = new fabric.Triangle({
+            width: 80,
+            height: 100,
+            fill: 'blue',
+            left: 300,
+            top: 330
+        });
+        my_canvas.add(triangle);
+        var imgE = document.getElementById('img01');
+        var imgF = new fabric.Image(imgE, {
+            left: 100,
+            top: 100,
+            width: 200,
+            height: 100,
+            angle: 30
+
+        });
+        imgF.scale(0.6);
+        my_canvas.add(imgF);
+        fabric.Image.fromURL("https://images.unsplash.com/photo-1592085198739-ffcad7f36b54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+            function(oImg) {
+                oImg.scale(0.1);
+                my_canvas.add(oImg);
+            });
+        //bilibili.com/video/BV1at411q7bt?p=3&spm_id_from=pageDriver
+
+        //
+        var canvasEl = document.getElementById('c1');
+        var ctx = canvasEl.getContext('2d');
+        ctx.fillStyle = 'red';
+        ctx.fillRect(100, 100, 20, 20);
+        rect.set({
+            left: 20,
+            top: 50
+        });
+        //canvas.renderAll();
+
+
+        // const xhr = new XMLHttpRequest()
+        // xhr.onreadystatechange = () => {
+        //     if (xhr.readyState === 4) {
+        //         console.log(xhr.status === 200 ? xhr.responseText : 'error')
+        //     }
+        // }
+        // xhr.open('GET', 'https://google.com')
+        // xhr.send()
+
+        //         常见的作法是通过 nginx 做简单的反向代理；例如在自己的开发环境，前后端分离的架构，前后端服务分别启动在 3000 和 5000 端口，则可以用这样的配置：
+
+        // server{
+        //   listen 3000;
+        //   server_name localhost;
+        //   location ^~ /api {
+        //   proxy_pass http://localhost:5000;
+        //   }
+        // }
+        function testXHR() {
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                }
+            });
+
+            xhr.open("GET", "https://soa-gw.canadapost.ca/rs/0009833772/0009833772/shipment/318641653061260473/details");
+            xhr.setRequestHeader("Accept", "application/vnd.cpc.shipment-v8+xml");
+            xhr.setRequestHeader("Accept-language", "en-CA");
+            xhr.setRequestHeader("Content-Type", "application/vnd.cpc.shipment-v8+xml");
+            xhr.setRequestHeader("Authorization", "Basic NjM5MmUzZTM5M2I1ZGQ0Yjo3MGRiNjZkNTYyY2UwZDZlN2MyZjNh");
+
+            xhr.send();
+
+        }
+        testXHR();
+    </script>
+</body>
+
+</html>
